@@ -12,19 +12,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Genre {
+public class Platform {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
-    @JsonIgnoreProperties("genre")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
+    @JsonIgnoreProperties("platform")
     private List<Game> games;
 
-    public Genre() {}
+    public Platform() {}
 
-    public Genre(String name) {
+    public Platform(String name) {
         super();
         this.name = name;
     }
@@ -55,7 +55,7 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre [id=" + id + ", name=" + name + "]";
+        return "Platform [id=" + id + ", name=" + name + "]";
     }
 }
 

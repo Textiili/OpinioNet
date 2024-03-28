@@ -10,7 +10,7 @@ public class Game {
     private String description;
     private Float price;
 
-    public Game() {}
+    public Game() {} //Poista?
 
     public Game(
         String title, 
@@ -26,7 +26,6 @@ public class Game {
         this.description = description;
         this.price = price;
     }
-
 
     public Long getId() {
         return id;
