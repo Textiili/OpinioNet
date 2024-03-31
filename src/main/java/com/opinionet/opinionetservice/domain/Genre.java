@@ -2,14 +2,15 @@ package com.opinionet.opinionetservice.domain;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+
+import com.opinionet.opinionetservice.domain.Game;
 
 @Entity
 public class Genre {
@@ -18,14 +19,12 @@ public class Genre {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genre")
-    @JsonIgnoreProperties("genre")
-    private List<Game> games;
+    // @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // private List<Game> games;
 
     public Genre() {}
 
     public Genre(String name) {
-        super();
         this.name = name;
     }
 
@@ -45,17 +44,16 @@ public class Genre {
         this.name = name;
     }
 
-    public List<Game> getGames() {
-        return games;
-    }
+    // public List<Game> getGames() {
+    //     return games;
+    // }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
+    // public void setGames(List<Game> games) {
+    //     this.games = games;
+    // }
 
     @Override
     public String toString() {
         return "Genre [id=" + id + ", name=" + name + "]";
     }
 }
-

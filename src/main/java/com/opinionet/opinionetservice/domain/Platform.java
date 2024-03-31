@@ -18,9 +18,9 @@ public class Platform {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
-    @JsonIgnoreProperties("platform")
-    private List<Game> games;
+    // @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
+    // @JsonIgnoreProperties("platform")
+    // private List<Game> games;
 
     public Platform() {}
 
@@ -45,13 +45,13 @@ public class Platform {
         this.name = name;
     }
 
-    public List<Game> getGames() {
-        return games;
-    }
+    // public List<Game> getGames() {
+    //     return games;
+    // }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
-    }
+    // public void setGames(List<Game> games) {
+    //     this.games = games;
+    // }
 
     @Override
     public String toString() {

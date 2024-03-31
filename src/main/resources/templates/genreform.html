@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Add Genre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h3>Add Genre</h3>
+    <form action="#" method="post" th:action="@{/savegenre}" th:object="${genre}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{name}" placeholder="Name" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

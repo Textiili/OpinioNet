@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Platform List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h3>All Platforms</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="platform : ${platforms}">
+                <td th:text="${platform.name}"></td>
+                <td>
+                    <a th:href="@{/editplatform/{id}(id=${platform.id})}" class="btn btn-success">Edit</a>
+                    <a th:href="@{/deleteplatform/{id}(id=${platform.id})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <a th:href="@{/addplatform}" class="btn btn-primary">Add Platform</a>
+    <br>
+</body>
+</html>

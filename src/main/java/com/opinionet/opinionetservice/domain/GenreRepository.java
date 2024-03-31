@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface GenreRepositary extends CrudRepository<Genre, Long> {
+public interface GenreRepository extends CrudRepository<Genre, Long> {
 }
