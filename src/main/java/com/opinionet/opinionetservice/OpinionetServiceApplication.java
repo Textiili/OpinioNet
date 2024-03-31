@@ -25,16 +25,15 @@ public class OpinionetServiceApplication {
         SpringApplication.run(OpinionetServiceApplication.class, args);
     }
 
-    // populate Genre table with test data and print it to console
     @Bean
     public CommandLineRunner populateTestData(GenreRepository genreRepository, PlatformRepository platformRepository) {
         return (args) -> {
             List<Genre> genres = Arrays.asList(
-                new Genre("Action"),
-                new Genre("Adventure"),
-                new Genre("Comedy"),
-                new Genre("Drama"),
-                new Genre("Fantasy")
+                new Genre("Run & Gun"),
+                new Genre("Horror"),
+                new Genre("Shoot'Em Up"),
+                new Genre("MOBA"),
+                new Genre("Sokoban")
             );
             genres.forEach(genreRepository::save);
 
