@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Game List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h3>All Games</h3>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Developer</th>
+            <th>Release Year</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="game : ${games}">
+            <td th:text="${game.title}"></td>
+            <td th:text="${game.developer}"></td>
+            <td th:text="${game.releaseYear}"></td>
+            <td th:text="${game.description}"></td>
+            <td th:text="${game.price}"></td>
+            <td><a th:href="@{/editgame/{id}(id=${game.id})}" class="btn btn-success">Edit</a></td>
+            <td><a th:href="@{/deletegame/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <a th:href="@{/addgame}">Add Game</a>
+    <br>
+</body>
+</html>

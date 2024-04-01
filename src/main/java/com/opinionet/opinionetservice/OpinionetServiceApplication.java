@@ -11,6 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.opinionet.opinionetservice.domain.Game;
+import com.opinionet.opinionetservice.domain.GameRepository;
 import com.opinionet.opinionetservice.domain.Genre;
 import com.opinionet.opinionetservice.domain.GenreRepository;
 import com.opinionet.opinionetservice.domain.Platform;
@@ -26,7 +28,10 @@ public class OpinionetServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner populateTestData(GenreRepository genreRepository, PlatformRepository platformRepository) {
+    public CommandLineRunner populateTestData(
+        GenreRepository genreRepository, 
+        PlatformRepository platformRepository, 
+        GameRepository gameRepository) {
         return (args) -> {
             List<Genre> genres = Arrays.asList(
                 new Genre("Run & Gun"),
@@ -46,6 +51,15 @@ public class OpinionetServiceApplication {
             );
             platforms.forEach(platformRepository::save);
 
+            List<Game> games = Arrays.asList(
+            new Game("Super Mario", "Nintendo", 1985, "Classic platformer", 9.99f),
+            new Game("Resident Evil", "Capcom", 1996, "Survival horror", 19.99f),
+            new Game("Halo: Combat Evolved", "Bungie", 2001, "First-person shooter", 29.99f),
+            new Game("League of Legends", "Riot Games", 2009, "Multiplayer online battle arena", 0f),
+            new Game("Portal", "Valve", 2007, "Puzzle-platform game", 14.99f)
+            );
+            games.forEach(gameRepository::save);
+
             log.info("All genres:");
             for (Genre genre : genreRepository.findAll()) {
                 log.info(genre.toString());
@@ -55,6 +69,7 @@ public class OpinionetServiceApplication {
             for (Platform platform : platformRepository.findAll()) {
                 log.info(platform.toString());
             }
+
         };
     }
 }

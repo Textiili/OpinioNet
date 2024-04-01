@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <title>Add Game</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h3>Add Game</h3>
+    <form action="#" method="post" th:action="@{/savegame}" th:object="${game}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text" th:field="*{title}" placeholder="Title" required>
+        <input type="text" th:field="*{developer}" placeholder="Developer" required>
+        <input type="number" th:field="*{releaseYear}" placeholder="Release Year" required>
+        <input type="text" th:field="*{description}" placeholder="Description" required>
+        <input type="number" th:field="*{price}" step="0.01" placeholder="Price" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
