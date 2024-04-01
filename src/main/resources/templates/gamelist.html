@@ -15,6 +15,7 @@
             <th>Release Year</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Genre</th>
             <th></th>
             <th></th>
         </tr>
@@ -24,6 +25,7 @@
             <td th:text="${game.releaseYear}"></td>
             <td th:text="${game.description}"></td>
             <td th:text="${game.price}"></td>
+            <td th:text="${game.genre.name}"></td>
             <td><a th:href="@{/editgame/{id}(id=${game.id})}" class="btn btn-success">Edit</a></td>
             <td><a th:href="@{/deletegame/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
         </tr>

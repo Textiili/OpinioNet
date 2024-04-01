@@ -4,13 +4,10 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-
-import com.opinionet.opinionetservice.domain.Game;
 
 @Entity
 public class Genre {
@@ -19,8 +16,8 @@ public class Genre {
     private Long id;
     private String name;
 
-    // @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // private List<Game> games;
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+    private List<Game> games;
 
     public Genre() {}
 
@@ -44,13 +41,13 @@ public class Genre {
         this.name = name;
     }
 
-    // public List<Game> getGames() {
-    //     return games;
-    // }
+    public List<Game> getGames() {
+        return games;
+    }
 
-    // public void setGames(List<Game> games) {
-    //     this.games = games;
-    // }
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
 
     @Override
     public String toString() {

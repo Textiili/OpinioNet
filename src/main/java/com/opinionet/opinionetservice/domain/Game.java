@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Game {
@@ -16,14 +18,19 @@ public class Game {
     private String description;
     private Float price;
 
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
+
     public Game() {}
 
-    public Game(String title, String developer, Integer releaseYear, String description, Float price) {
+    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre) {
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
+        this.genre = genre;
     }
 
     public Long getId() {
@@ -74,6 +81,14 @@ public class Game {
         this.price = price;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     @Override
     public String toString() {
         return "Game{" +
@@ -83,6 +98,7 @@ public class Game {
         ", releaseYear=" + releaseYear +
         ", description='" + description + '\'' +
         ", price=" + price +
+        ", genre=" + genre +
         '}';
     }
 }
