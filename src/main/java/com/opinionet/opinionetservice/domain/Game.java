@@ -77,12 +77,12 @@ public class Game {
     @Override
     public String toString() {
         return "Game{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", developer='" + developer + '\'' +
-                ", releaseYear=" + releaseYear +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
+        "id=" + id +
+        ", title='" + title + '\'' +
+        ", developer='" + developer + '\'' +
+        ", releaseYear=" + releaseYear +
+        ", description='" + description + '\'' +
+        ", price=" + price +
+        '}';
     }
 }
