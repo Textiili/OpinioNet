@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//Has authority of user
 @Controller
 public class ReviewController {
 

@@ -28,7 +28,7 @@ public class WebSecurityConfig {
         	.anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin
-        .defaultSuccessUrl("/", true)
+        .defaultSuccessUrl("/", true) // <- käytettävyyden kannalta älä ohjaa aina index?
         .permitAll()
       )
       .logout(logout -> logout

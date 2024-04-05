@@ -29,7 +29,7 @@
             </tbody>
         </table>
     </div>
-    <a th:href="@{/addreview/{id}(id=${game.id})}" class="btn btn-primary">Add Review</a>
+    <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">Add Review</a>
 </body>
 </html>
 

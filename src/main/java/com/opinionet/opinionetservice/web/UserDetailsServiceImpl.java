@@ -32,10 +32,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         	AuthorityUtils.createAuthorityList(curruser.getRole())
 		);
         return user;
-        // User currentUser = userRepository.findByUsername(username);
-        // if (currentUser == null || currentUser.getPasswordHash() == null) {
-        //     throw new CustomExceptionMessage("Invalid credentials");
-        // }
-        // return currentUser;
     }
 }
