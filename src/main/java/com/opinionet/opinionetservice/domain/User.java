@@ -3,7 +3,9 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource(exported = false)
 @Entity(name = "users")
 public class User {
 

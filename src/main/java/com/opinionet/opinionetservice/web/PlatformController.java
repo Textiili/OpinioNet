@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import com.opinionet.opinionetservice.domain.Platform;
 import com.opinionet.opinionetservice.domain.PlatformRepository;
@@ -14,6 +17,7 @@ import com.opinionet.opinionetservice.domain.GameRepository;
 import com.opinionet.opinionetservice.domain.Game;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class PlatformController {
 
     @Autowired
@@ -41,9 +45,13 @@ public class PlatformController {
     }
 
     @PostMapping("/saveplatform")
-    public String savePlatform(@ModelAttribute Platform platform) {
-        platformRepository.save(platform);
-        return "redirect:/platformlist";
+    public String savePlatform(@Valid @ModelAttribute("platform") Platform platform, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "platformform";
+        } else {
+            platformRepository.save(platform);
+            return "redirect:/platformlist";
+        }
     }
 
     @GetMapping("/deleteplatform/{id}")

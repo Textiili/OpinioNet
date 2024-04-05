@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.GameRepository;
@@ -36,6 +37,7 @@ public class GameController {
         return "index";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/addgame")
     public String addGame(Model model) {
         model.addAttribute("game", new Game());
@@ -44,6 +46,7 @@ public class GameController {
         return "gameform";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/editgame/{id}")
     public String editGame(@PathVariable("id") Long gameId, Model model) {
         model.addAttribute("game", gameRepository.findById(gameId));
@@ -52,7 +55,8 @@ public class GameController {
         return "gameform";
     }
 
-   @PostMapping("/savegame")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/savegame")
     public String saveGame(@ModelAttribute Game game, @RequestParam("platformIds") List<Long> platformIds) {
         Set<Platform> platforms = new HashSet<>();
         for (Long platformId : platformIds) {
@@ -64,6 +68,7 @@ public class GameController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deletegame/{id}")
     public String deleteGame(@PathVariable("id") Long gameId) {
         gameRepository.deleteById(gameId);

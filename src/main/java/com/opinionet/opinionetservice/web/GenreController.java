@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.access.prepost.PreAuthorize;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import com.opinionet.opinionetservice.domain.Genre;
 import com.opinionet.opinionetservice.domain.GenreRepository;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class GenreController {
 
     @Autowired
@@ -36,9 +40,13 @@ public class GenreController {
     }
 
     @PostMapping("/savegenre")
-    public String saveGenre(@ModelAttribute Genre genre) {
-        genreRepository.save(genre);
-        return "redirect:/genrelist";
+    public String saveGenre(@Valid @ModelAttribute Genre genre, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "genreform";
+        } else {
+            genreRepository.save(genre);
+            return "redirect:/genrelist";
+        }
     }
 
     @GetMapping("/deletegenre/{id}")

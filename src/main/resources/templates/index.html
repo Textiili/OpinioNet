@@ -7,7 +7,14 @@
 </head>
 <body>
     <h3>All Games</h3>
-
+    <td>
+        <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
+            <input type="submit" value="Logout" class="btn btn-sm btn-danger"/>
+        </form>
+        <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
+            <input type="submit" value="Login" class="btn btn-sm btn-primary"/>
+        </form>
+    </td>
     <table class="table">
         <thead>
             <tr>
@@ -28,21 +35,24 @@
                 <td th:text="${game.developer}"></td>
                 <td th:text="${game.releaseYear}"></td>
                 <td th:text="${game.description}"></td>
-                <td th:text="${game.price}"></td>
+                <td th:text="${game.price} + '€'"></td>
                 <td th:text="${game.genre.name}"></td>
                 <td>
                     <ul>
                         <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
                     </ul>
                 </td>
-                <td><a th:href="@{/editgame/{id}(id=${game.id})}" class="btn btn-success">Edit</a></td>
-                <td><a th:href="@{/deletegame/{id}(id=${game.id})}" class="btn btn-danger">Delete</a></td>
+                <td><a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">Review</a></td>
+                <td><a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">Edit</a></td>
+                <td><a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">Delete</a></td>
             </tr>
         </tbody>
     </table>
     <br>
     <br>
-    <a th:href="@{/addgame}">Add Game</a>
+    <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')">Add Game</a>
+    <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')">Platform List</a>
+    <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')">Genre List</a>
     <br>
 </body>
 </html>

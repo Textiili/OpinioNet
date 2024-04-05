@@ -66,6 +66,8 @@ public class OpinionetServiceApplication {
 
             User admin = new User("admin", environment.getProperty("ADMIN_PASSWORD"), "ADMIN");
             userRepository.save(admin);
+            User user = new User("user", environment.getProperty("ADMIN_PASSWORD"), "USER");
+            userRepository.save(user);
 
             log.info("All genres:");
             for (Genre genre : genreRepository.findAll()) {

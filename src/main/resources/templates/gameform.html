@@ -15,7 +15,6 @@
         <input type="text" th:field="*{description}" placeholder="Description" required>
         <input type="number" th:field="*{price}" step="0.01" placeholder="Price" required>
         
-        <!-- Multiselect dropdown for selecting platforms -->
         <select multiple="multiple" name="platformIds" class="form-control" required>
             <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
         </select>
@@ -26,5 +25,7 @@
         </select>
         <button type="submit">Submit</button>
     </form>
+    <br>
+    <a th:href="@{/}">Back to index</a>
 </body>
 </html>

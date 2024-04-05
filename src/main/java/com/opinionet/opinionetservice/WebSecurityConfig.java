@@ -26,12 +26,14 @@ public class WebSecurityConfig {
             .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
         	.anyRequest().authenticated()
       )
-    //   .formLogin(formlogin -> formlogin
-    //       .defaultSuccessUrl("/", true)
-    //       .permitAll()
-    //   )
+      .formLogin(formlogin -> formlogin
+        .defaultSuccessUrl("/", true)
+        .permitAll()
+      )
       .logout(logout -> logout
-          .permitAll()
+        .invalidateHttpSession(true)
+        .logoutSuccessUrl("/")
+        .permitAll()
       );
       return http.build();
     }

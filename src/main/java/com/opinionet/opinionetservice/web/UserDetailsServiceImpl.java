@@ -34,13 +34,3 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 }
-// User user = userRepository.findByUsername(username);
-        // if (user == null) {
-        //     throw new CustomExceptionMessage("Invalid credentials");
-        // }
-        // String[] roles = user.isAdmin() ? new String[]{"ROLE_ADMIN"} : new String[]{"ROLE_USER"};
-        // return new org.springframework.security.core.userdetails.User(
-        //     user.getUsername(),
-        //     user.getPassword(),
-        //     AuthorityUtils.createAuthorityList(roles)
-        // );
