@@ -23,7 +23,8 @@ public class WebSecurityConfig {
       http
       .authorizeHttpRequests( authorize -> authorize
         	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
-            .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
+          .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
+          .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli indeksi
         	.anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin

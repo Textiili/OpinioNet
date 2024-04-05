@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+//TODO: Validation
 @Entity
 public class Game {
     @Id
@@ -14,11 +15,13 @@ public class Game {
     private Integer releaseYear;
     private String description;
     private Float price;
-    //score?
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "game_platform",
@@ -107,6 +110,14 @@ public class Game {
         this.genre = genre;
     }
 
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     public Set<Platform> getPlatforms() {
         return platforms;
     }
@@ -129,4 +140,3 @@ public class Game {
         '}';
     }
 }
-

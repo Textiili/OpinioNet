@@ -3,13 +3,14 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import java.util.Date;
 
+//TODO: Validation!
 @Entity
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String reviewText;
-    private int rating;
+    private Float rating;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -26,7 +27,7 @@ public class Review {
         this.createdAt = new Date();
     }
 
-    public Review(String reviewText, int rating, User user, Game game) {
+    public Review(String reviewText, float rating, User user, Game game) {
         this.reviewText = reviewText;
         this.rating = rating;
         this.user = user;
@@ -50,11 +51,11 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public int getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 
@@ -94,4 +95,3 @@ public class Review {
         '}';
     }
 }
-

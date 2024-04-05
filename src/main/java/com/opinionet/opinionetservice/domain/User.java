@@ -23,8 +23,8 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
-    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    // private List<Review> reviews = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 
     public User() {
     }
@@ -67,23 +67,23 @@ public class User {
         this.role = role;
     }
 
-    // public List<Review> getReviews() {
-    //     return reviews;
-    // }
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
-    // public void setReviews(List<Review> reviews) {
-    //     this.reviews = reviews;
-    // }
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
-    // public void addReview(Review review) {
-    //     reviews.add(review);
-    //     review.setUser(this);
-    // }
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setUser(this);
+    }
 
-    // public void removeReview(Review review) {
-    //     reviews.remove(review);
-    //     review.setUser(null);
-    // }
+    public void removeReview(Review review) {
+        reviews.remove(review);
+        review.setUser(null);
+    }
 
     @Override
     public String toString() {

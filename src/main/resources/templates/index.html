@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             <tr th:each="game : ${games}">
-                <td th:text="${game.title}"></td>
+                <td><a th:href="@{/reviews/{id}(id=${game.id})}"><span th:text="${game.title}"></span></a></td>
                 <td th:text="${game.developer}"></td>
                 <td th:text="${game.releaseYear}"></td>
                 <td th:text="${game.description}"></td>
