@@ -22,13 +22,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
       http
       .authorizeHttpRequests( authorize -> authorize
-        	.requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
+        	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
+            .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
         	.anyRequest().authenticated()
       )
-      .formLogin(formlogin -> formlogin
-          .defaultSuccessUrl("/", true)
-          .permitAll()
-      )
+    //   .formLogin(formlogin -> formlogin
+    //       .defaultSuccessUrl("/", true)
+    //       .permitAll()
+    //   )
       .logout(logout -> logout
           .permitAll()
       );
