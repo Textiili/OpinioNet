@@ -18,6 +18,10 @@
             <option value="" disabled selected hidden>Select Genre</option>
             <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
         </select>
+        <select th:field="*{platform}" class="form-control" required>
+            <option value="" disabled selected hidden>Select Genre</option>
+            <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
+        </select>
         <button type="submit">Submit</button>
     </form>
 </body>

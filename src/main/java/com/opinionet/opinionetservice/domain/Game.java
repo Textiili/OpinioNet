@@ -22,15 +22,20 @@ public class Game {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @ManyToOne
+    @JoinColumn(name = "platform_id")
+    private Platform platform;
+
     public Game() {}
 
-    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre) {
+    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre, Platform platform) {
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
         this.genre = genre;
+        this.platform = platform;
     }
 
     public Long getId() {
@@ -89,6 +94,14 @@ public class Game {
         this.genre = genre;
     }
 
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
     @Override
     public String toString() {
         return "Game{" +
@@ -99,6 +112,7 @@ public class Game {
         ", description='" + description + '\'' +
         ", price=" + price +
         ", genre=" + genre +
+        ", platform=" + platform +
         '}';
     }
 }

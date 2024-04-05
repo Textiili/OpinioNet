@@ -51,11 +51,11 @@ public class OpinionetServiceApplication {
             platforms.forEach(platformRepository::save);
 
             List<Game> games = Arrays.asList(
-            new Game("Super Mario", "Nintendo", 1985, "description", 9.99f, genres.get(0)),
-            new Game("Resident Evil", "Capcom", 1996, "description", 19.99f, genres.get(1)),
-            new Game("Halo: Combat Evolved", "Bungie", 2001, "description", 29.99f, genres.get(2)),
-            new Game("League of Legends", "Riot Games", 2009, "description", 0f, genres.get(3)),
-            new Game("Portal", "Valve", 2007, "description", 14.99f, genres.get(4))
+            new Game("Super Mario", "Nintendo", 1985, "description", 9.99f, genres.get(0), platforms.get(3)),
+            new Game("Resident Evil", "Capcom", 1996, "description", 19.99f, genres.get(1), platforms.get(0)),
+            new Game("Halo: Combat Evolved", "Bungie", 2001, "description", 29.99f, genres.get(2), platforms.get(2)),
+            new Game("League of Legends", "Riot Games", 2009, "description", 0f, genres.get(3), platforms.get(0)),
+            new Game("Portal", "Valve", 2007, "description", 14.99f, genres.get(4), platforms.get(0))
             );
             games.forEach(gameRepository::save);
 

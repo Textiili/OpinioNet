@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.GameRepository;
-import com.opinionet.opinionetservice.domain.GenreRepository; 
+import com.opinionet.opinionetservice.domain.GenreRepository;
+import com.opinionet.opinionetservice.domain.PlatformRepository; 
 
 @Controller
 public class GameController {
@@ -21,6 +22,8 @@ public class GameController {
     @Autowired
     private GenreRepository genreRepository; 
 
+    @Autowired PlatformRepository platformRepository;
+
     @GetMapping("/gamelist")
     public String gameList(Model model) {
         model.addAttribute("games", gameRepository.findAll());
@@ -30,14 +33,16 @@ public class GameController {
     @GetMapping("/addgame")
     public String addGame(Model model) {
         model.addAttribute("game", new Game());
-        model.addAttribute("genres", genreRepository.findAll()); 
+        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("platforms", platformRepository.findAll());
         return "gameform";
     }
 
     @GetMapping("/editgame/{id}")
     public String editGame(@PathVariable("id") Long gameId, Model model) {
         model.addAttribute("game", gameRepository.findById(gameId));
-        model.addAttribute("genres", genreRepository.findAll()); 
+        model.addAttribute("genres", genreRepository.findAll());
+        model.addAttribute("platforms", platformRepository.findAll()); 
         return "gameform";
     }
 
