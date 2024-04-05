@@ -1,11 +1,8 @@
 package com.opinionet.opinionetservice.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Game {
@@ -22,11 +19,26 @@ public class Game {
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @ManyToOne
-    @JoinColumn(name = "platform_id")
-    private Platform platform;
+    @ManyToMany
+    @JoinTable(name = "game_platform",
+               joinColumns = @JoinColumn(name = "game_id"),
+               inverseJoinColumns = @JoinColumn(name = "platform_id"))
+    private Set<Platform> platforms = new HashSet<>();
 
-    public Game() {}
+    public Game() {
+        this.genre = new Genre("-");
+        this.platforms.add(new Platform("-"));
+    }
+
+    public Game(String title, String developer, Integer releaseYear, String description, Float price) {
+        this.title = title;
+        this.developer = developer;
+        this.releaseYear = releaseYear;
+        this.description = description;
+        this.price = price;
+        this.genre = new Genre("-");
+        this.platforms.add(new Platform("-"));
+    }
 
     public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre, Platform platform) {
         this.title = title;
@@ -35,7 +47,7 @@ public class Game {
         this.description = description;
         this.price = price;
         this.genre = genre;
-        this.platform = platform;
+        this.platforms.add(platform);
     }
 
     public Long getId() {
@@ -94,12 +106,12 @@ public class Game {
         this.genre = genre;
     }
 
-    public Platform getPlatform() {
-        return platform;
+    public Set<Platform> getPlatforms() {
+        return platforms;
     }
 
-    public void setPlatform(Platform platform) {
-        this.platform = platform;
+    public void setPlatforms(Set<Platform> platforms) {
+        this.platforms = platforms;
     }
 
     @Override
@@ -112,7 +124,8 @@ public class Game {
         ", description='" + description + '\'' +
         ", price=" + price +
         ", genre=" + genre +
-        ", platform=" + platform +
+        ", platforms=" + platforms +
         '}';
     }
 }
+

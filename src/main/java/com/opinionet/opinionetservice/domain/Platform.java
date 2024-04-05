@@ -1,15 +1,9 @@
 package com.opinionet.opinionetservice.domain;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Platform {
@@ -18,9 +12,9 @@ public class Platform {
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform")
-    @JsonIgnoreProperties("platform")
-    private List<Game> games;
+    @ManyToMany(mappedBy = "platforms", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @JsonIgnoreProperties("platforms")
+    private Set<Game> games = new HashSet<>();
 
     public Platform() {}
 
@@ -45,11 +39,11 @@ public class Platform {
         this.name = name;
     }
 
-    public List<Game> getGames() {
+    public Set<Game> getGames() {
         return games;
     }
 
-    public void setGames(List<Game> games) {
+    public void setGames(Set<Game> games) {
         this.games = games;
     }
 
@@ -58,4 +52,6 @@ public class Platform {
         return "Platform [id=" + id + ", name=" + name + "]";
     }
 }
+
+
 

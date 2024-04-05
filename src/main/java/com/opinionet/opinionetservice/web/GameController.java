@@ -1,5 +1,9 @@
 package com.opinionet.opinionetservice.web;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,10 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.GameRepository;
 import com.opinionet.opinionetservice.domain.GenreRepository;
+import com.opinionet.opinionetservice.domain.Platform;
 import com.opinionet.opinionetservice.domain.PlatformRepository; 
 
 @Controller
@@ -46,8 +52,14 @@ public class GameController {
         return "gameform";
     }
 
-    @PostMapping("/savegame")
-    public String saveGame(@ModelAttribute Game game) {
+   @PostMapping("/savegame")
+    public String saveGame(@ModelAttribute Game game, @RequestParam("platformIds") List<Long> platformIds) {
+        Set<Platform> platforms = new HashSet<>();
+        for (Long platformId : platformIds) {
+            platforms.add(platformRepository.findById(platformId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid platform ID: " + platformId)));
+        }
+        game.setPlatforms(platforms);
         gameRepository.save(game);
         return "redirect:/gamelist";
     }

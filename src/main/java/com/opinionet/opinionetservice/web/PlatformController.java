@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.opinionet.opinionetservice.domain.Platform;
 import com.opinionet.opinionetservice.domain.PlatformRepository;
+import com.opinionet.opinionetservice.domain.GameRepository;
+import com.opinionet.opinionetservice.domain.Game;
 
 @Controller
 public class PlatformController {
 
     @Autowired
     private PlatformRepository platformRepository;
+    
+    @Autowired
+    private GameRepository gameRepository;
 
     @GetMapping("/platformlist")
     public String platformList(Model model) {
@@ -43,8 +48,17 @@ public class PlatformController {
 
     @GetMapping("/deleteplatform/{id}")
     public String deletePlatform(@PathVariable("id") Long platformId) {
-        platformRepository.deleteById(platformId);
+
+        Platform platform = platformRepository.findById(platformId).orElse(null);
+        if (platform != null) {
+
+            for (Game game : platform.getGames()) {
+                game.getPlatforms().remove(platform);
+                gameRepository.save(game);
+            }
+            
+            platformRepository.deleteById(platformId);
+        }
         return "redirect:/platformlist";
     }
 }
-
