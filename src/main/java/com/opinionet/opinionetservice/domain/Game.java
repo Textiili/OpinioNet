@@ -14,6 +14,7 @@ public class Game {
     private Integer releaseYear;
     private String description;
     private Float price;
+    //score?
 
     @ManyToOne
     @JoinColumn(name = "genre_id")

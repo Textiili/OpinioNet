@@ -30,10 +30,10 @@ public class GameController {
 
     @Autowired PlatformRepository platformRepository;
 
-    @GetMapping("/gamelist")
+    @GetMapping("")
     public String gameList(Model model) {
         model.addAttribute("games", gameRepository.findAll());
-        return "gamelist";
+        return "index";
     }
 
     @GetMapping("/addgame")
@@ -61,13 +61,13 @@ public class GameController {
         }
         game.setPlatforms(platforms);
         gameRepository.save(game);
-        return "redirect:/gamelist";
+        return "redirect:/";
     }
 
     @GetMapping("/deletegame/{id}")
     public String deleteGame(@PathVariable("id") Long gameId) {
         gameRepository.deleteById(gameId);
-        return "redirect:/gamelist";
+        return "redirect:/";
     }
 }
 
