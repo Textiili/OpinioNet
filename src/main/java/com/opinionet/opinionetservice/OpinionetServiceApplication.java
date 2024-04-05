@@ -64,11 +64,16 @@ public class OpinionetServiceApplication {
             );
             games.forEach(gameRepository::save);
 
-            User admin = new User("admin", environment.getProperty("ADMIN_PASSWORD"), "ADMIN");
-            userRepository.save(admin);
-            User user = new User("user", environment.getProperty("ADMIN_PASSWORD"), "USER");
-            userRepository.save(user);
-
+            if (Arrays.asList(environment.getActiveProfiles()).contains("test")) {
+                User testAdmin = new User("testAdmin", "$2a$12$htE0gmIiZc15h7CBpzdl4OqNRuRGX.6JUBmt5RMX5NE2egNrxF8h2", "ADMIN");
+                userRepository.save(testAdmin);
+            } else {
+                User admin = new User("admin", environment.getProperty("ADMIN_PASSWORD"), "ADMIN");
+                userRepository.save(admin);
+                User user = new User("user", environment.getProperty("ADMIN_PASSWORD"), "USER");
+                userRepository.save(user);
+            }
+            
             log.info("All genres:");
             for (Genre genre : genreRepository.findAll()) {
                 log.info(genre.toString());
