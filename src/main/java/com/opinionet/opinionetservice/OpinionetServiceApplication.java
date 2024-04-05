@@ -70,7 +70,7 @@ public class OpinionetServiceApplication {
             } else {
                 User admin = new User("admin", environment.getProperty("ADMIN_PASSWORD"), "ADMIN");
                 userRepository.save(admin);
-                User user = new User("user", environment.getProperty("ADMIN_PASSWORD"), "USER");
+                User user = new User("user", environment.getProperty("USER_PASSWORD"), "USER");
                 userRepository.save(user);
             }
             
