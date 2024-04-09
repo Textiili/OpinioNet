@@ -22,7 +22,7 @@
             <tbody>
                 <tr th:each="review : ${reviews}">
                     <td th:if="${review.user != null}" th:text="${review.user.username}"></td>
-                     <td th:if="${review.user == null}">Anonymous</td> <!--TODO: Poista? -->
+                    <td th:if="${review.user == null}">Anonymous</td> <!--TODO: Poista? -->
                     <td th:text="${review.rating}"></td>
                     <td th:text="${review.reviewText}"></td>
                 </tr>
