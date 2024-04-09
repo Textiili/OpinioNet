@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//Has authority of user
 @Controller
 public class ReviewController {
 
@@ -40,10 +39,11 @@ public class ReviewController {
             model.addAttribute("reviews", reviews);
             return "reviewlist";
         } else {
-            return "error"; 
+            return "/error"; 
         }
     }
 
+    //Has authority of user?
     @GetMapping("/addreview/{gameId}")
     public String showReviewForm(@PathVariable Long gameId, Model model) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
@@ -53,35 +53,30 @@ public class ReviewController {
             model.addAttribute("review", new Review());
             return "reviewform";
         } else {
-            return "error"; // Simplify?
+            return "/error";
         }
     }
 
+    //Has authority of user?
     @PostMapping("/reviews/{gameId}")
     public String saveReview(@PathVariable Long gameId, @ModelAttribute Review review) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
         if (optionalGame.isPresent()) {
             Game game = optionalGame.get();
 
-            // Retrieve the currently authenticated user using SecurityContextHolder
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentUserName = authentication.getName();
             User currentUser = userRepository.findByUsername(currentUserName);
 
-            // Set the user for the review
             review.setUser(currentUser);
-
-            // Set the game for the review
             review.setGame(game);
-
-            // Save the review
             reviewRepository.save(review);
 
             return "redirect:/reviews/" + gameId;
         } else {
-            return "error"; // Handle game not found
+            return "/error";
         }
     }
 
-    //TODO: Delete joka toimii reviewin kirjottajalle ja muokkaus joka toimii reviewi kirjottajalle!
+    //TODO: Delete ja Edit! Access vain omistajalla, testaa POSTMAN
 }

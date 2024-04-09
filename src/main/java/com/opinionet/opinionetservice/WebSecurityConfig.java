@@ -25,7 +25,8 @@ public class WebSecurityConfig {
         	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
           .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
           .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli indeksi
-          .requestMatchers(antMatcher("/database/**")).permitAll() 
+          .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
+          .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
         	.anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin

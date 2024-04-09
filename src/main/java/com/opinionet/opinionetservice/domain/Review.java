@@ -90,7 +90,7 @@ public class Review {
         ", reviewText='" + reviewText + '\'' +
         ", rating=" + rating +
         ", createdAt=" + createdAt +
-        ", user=" + user +
+        ", user=" + user.getUsername() + 
         ", game=" + game +
         '}';
     }

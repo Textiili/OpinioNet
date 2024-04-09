@@ -3,9 +3,9 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(exported = false)
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity(name = "users")
 public class User {
 
@@ -18,9 +18,11 @@ public class User {
     private String username;
 
     @Column(name = "password_hash", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String passwordHash;
 
     @Column(name = "role", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
