@@ -40,7 +40,7 @@ public class ReviewController {
             model.addAttribute("reviews", reviews);
             return "reviewlist";
         } else {
-            return "error"; // Simplify?
+            return "error"; 
         }
     }
 
