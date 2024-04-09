@@ -11,5 +11,5 @@ public class CustomErrorController implements ErrorController {
     public String redirectAtIndexWhenErrorOccurs() {
         return "redirect:/";
     }
-    //Päivitä?
+    //TODO: ERROR VIESTI!
 }

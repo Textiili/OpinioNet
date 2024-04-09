@@ -1,6 +1,7 @@
 package com.opinionet.opinionetservice.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class ReviewController {
         }
     }
 
-    //Has authority of user?
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/addreview/{gameId}")
     public String showReviewForm(@PathVariable Long gameId, Model model) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
@@ -57,7 +58,7 @@ public class ReviewController {
         }
     }
 
-    //Has authority of user?
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/reviews/{gameId}")
     public String saveReview(@PathVariable Long gameId, @ModelAttribute Review review) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);

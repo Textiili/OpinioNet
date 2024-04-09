@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
-    <title>Add Game</title>
+    <link type="text/css" rel="stylesheet" href="/css/mystyle.css" th:href="@{/css/mystyle.css}" />
+    <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
     <h3>Add Game</h3>
@@ -14,6 +15,7 @@
         <input type="number" th:field="*{releaseYear}" placeholder="Release Year" required>
         <input type="text" th:field="*{description}" placeholder="Description" required>
         <input type="number" th:field="*{price}" step="0.01" placeholder="Price" required>
+        <input type="text" th:field="*{bannerImageUrl}" placeholder="bannerImageUrl" required>
         
         <select multiple="multiple" name="platformIds" class="form-control" required>
             <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
