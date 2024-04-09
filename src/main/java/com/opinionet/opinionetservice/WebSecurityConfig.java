@@ -25,12 +25,17 @@ public class WebSecurityConfig {
         	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
           .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
           .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli indeksi
+          .requestMatchers(antMatcher("/database/**")).permitAll() 
         	.anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin
         .defaultSuccessUrl("/", true) // <- käytettävyyden kannalta älä ohjaa aina index?
         .permitAll()
       )
+      //To enable h2-console
+      .csrf(csrf -> csrf.disable())
+      .headers(headers -> headers.disable())
+
       .logout(logout -> logout
         .invalidateHttpSession(true)
         .logoutSuccessUrl("/")
