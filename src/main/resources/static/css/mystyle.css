@@ -6,7 +6,7 @@
 .game-box {
     border: 1px solid #ccc;
     margin: 10px;
-    width: calc(33.33% - 20px); /* Adjust as needed */
+    width: calc(33.33% - 20px);
     box-sizing: border-box;
     overflow: hidden;
     display: flex;
