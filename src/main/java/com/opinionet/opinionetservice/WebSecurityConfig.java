@@ -23,8 +23,9 @@ public class WebSecurityConfig {
       http
       .authorizeHttpRequests( authorize -> authorize
         	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
+          .requestMatchers(antMatcher("/images/**")).permitAll() //Salli kuvat
           .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
-          .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli indeksi
+          .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
           .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
           .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
         	.anyRequest().authenticated()

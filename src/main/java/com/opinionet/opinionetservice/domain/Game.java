@@ -15,6 +15,7 @@ public class Game {
     private Integer releaseYear;
     private String description;
     private Float price;
+    private String bannerImageUrl;
 
     @ManyToOne
     @JoinColumn(name = "genre_id")
@@ -50,6 +51,17 @@ public class Game {
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
+        this.genre = genre;
+        this.platforms.add(platform);
+    }
+
+    public Game(String title, String developer, Integer releaseYear, String description, Float price, String bannerImageUrl, Genre genre, Platform platform) {
+        this.title = title;
+        this.developer = developer;
+        this.releaseYear = releaseYear;
+        this.description = description;
+        this.price = price;
+        this.bannerImageUrl = bannerImageUrl;
         this.genre = genre;
         this.platforms.add(platform);
     }
@@ -100,6 +112,14 @@ public class Game {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public String getBannerImageUrl() {
+        return bannerImageUrl;
+    }
+
+    public void setBannerImageUrl(String bannerImageUrl) {
+        this.bannerImageUrl = bannerImageUrl;
     }
 
     public Genre getGenre() {

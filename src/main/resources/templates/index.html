@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!-- <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
@@ -56,4 +56,52 @@
     <br>
 </body>
 </html>
-
+ -->
+ <!DOCTYPE HTML>
+ <html xmlns:th="http://www.thymeleaf.org">
+ <head>
+     <link type="text/css" rel="stylesheet" href="/css/mystyle.css" th:href="@{/css/mystyle.css}" />
+     <title>Game List</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ </head>
+ <body>
+     <h3>All Games</h3>
+     <td>
+         <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
+             <input type="submit" value="Logout" class="btn btn-sm btn-danger"/>
+         </form>
+         <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
+             <input type="submit" value="Login" class="btn btn-sm btn-primary"/>
+         </form>
+     </td>
+     <div class="game-container">
+         <div th:each="game : ${games}" class="game-box">
+             <div class="image-container">
+                <img th:src="${game.bannerImageUrl}" alt="Game Banner" />
+             </div>
+             <div class="info-container">
+                 <h4 th:text="${game.title}"></h4>
+                 <p th:text="'Developer: ' + ${game.developer}"></p>
+                 <p th:text="'Release Year: ' + ${game.releaseYear}"></p>
+                 <p th:text="'Price: ' + ${game.price} + '€'"></p>
+                 <p th:text="'Genre: ' + ${game.genre.name}"></p>
+                 <p><strong>Platforms:</strong></p>
+                 <ul>
+                     <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
+                 </ul>
+                 <p><strong>Description:</strong></p>
+                 <p th:text="${game.description}"></p>
+                 <div class="actions">
+                     <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">Review</a>
+                     <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">Edit</a>
+                     <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">Delete</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')">Add Game</a>
+     <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')">Platform List</a>
+     <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')">Genre List</a>
+ </body>
+ </html>
+ 

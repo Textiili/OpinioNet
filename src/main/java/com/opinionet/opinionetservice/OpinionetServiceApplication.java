@@ -38,29 +38,28 @@ public class OpinionetServiceApplication {
             Environment environment) {
         return (args) -> {
             List<Genre> genres = Arrays.asList(
-                    new Genre("Run & Gun"),
-                    new Genre("Horror"),
-                    new Genre("Shoot'Em Up"),
-                    new Genre("MOBA"),
-                    new Genre("Sokoban")
+                new Genre("Sokoban"),
+                new Genre("Roguelike Deck-Building"),
+                new Genre("Shoot'Em Up"),
+                new Genre("Metroidvania"),
+                new Genre("Turn-based RPG")
             );
             genres.forEach(genreRepository::save);
 
             List<Platform> platforms = Arrays.asList(
-                    new Platform("PC"),
-                    new Platform("PlayStation 2"),
-                    new Platform("Xbox 360"),
-                    new Platform("Nintendo Switch"),
-                    new Platform("Android")
+                new Platform("PC"),
+                new Platform("PlayStation 4"),
+                new Platform("Xbox One"),
+                new Platform("Nintendo Switch")
             );
             platforms.forEach(platformRepository::save);
 
             List<Game> games = Arrays.asList(
-                    new Game("Super Mario", "Nintendo", 1985, "description", 9.99f, genres.get(0), platforms.get(3)),
-                    new Game("Resident Evil", "Capcom", 1996, "description", 19.99f, genres.get(1), platforms.get(0)),
-                    new Game("Halo: Combat Evolved", "Bungie", 2001, "description", 29.99f, genres.get(2), platforms.get(2)),
-                    new Game("League of Legends", "Riot Games", 2009, "description", 0f, genres.get(3), platforms.get(0)),
-                    new Game("Portal", "Valve", 2007, "description", 14.99f, genres.get(4), platforms.get(0))
+                new Game("Void Stranger", "System Erasure", 2023, "description", 11.79f,"/images/voidStrangerBanner.jpg", genres.get(0), platforms.get(0)),
+                new Game("Inscryption", "Daniel Mullins Games", 2021, "description", 19.99f,"/images/inscryptionBanner.jpg", genres.get(1), platforms.get(0)),
+                new Game("Cuphead", "Studio MDHR Entertainment Inc.", 2001, "description", 19.99f,"/images/cupheadBanner.jpg", genres.get(2), platforms.get(2)),
+                new Game("Hollow Knight", "Team Cherry", 2017, "description", 14.79f,"/images/hollowKnightBanner.jpg", genres.get(3), platforms.get(0)),
+                new Game("Undertale", "tobyfox", 2007, "description", 9.99f,"/images/undertaleBanner.jpg", genres.get(4), platforms.get(0))
             );
             games.forEach(gameRepository::save);
 
