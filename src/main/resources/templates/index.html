@@ -46,11 +46,11 @@
         <p><strong>Description:</strong></p>
         <p th:text="${game.description}"></p>
         <div class="actions">
-            <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-sm btn-primary">
+            <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
                 Review</a>
-            <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-primary">
+            <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
                 Edit</a>
-            <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')"class="btn btn-sm btn-primary">
+            <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
                 Delete</a>
         </div>
         </div>
