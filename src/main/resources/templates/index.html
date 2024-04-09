@@ -29,33 +29,32 @@
 <div class="game-container">
     <div th:each="game : ${games}" class="game-box">
         <div class="image-container">
-        <img th:src="${game.bannerImageUrl}" alt="Game Banner" />
+            <img th:src="${game.bannerImageUrl}" alt="Game Banner" />
         </div>
         <div class="info-container">
-        <h4>
-        <a th:href="@{/reviews/{id}(id=${game.id})}" th:text="${game.title}"></a>
-        </h4>
-        <p th:text="'Developer: ' + ${game.developer}"></p>
-        <p th:text="'Release Year: ' + ${game.releaseYear}"></p>
-        <p th:text="'Price: ' + ${game.price} + '€'"></p>
-        <p th:text="'Genre: ' + ${game.genre.name}"></p>
-        <p><strong>Platforms:</strong></p>
-        <ul>
-            <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
-        </ul>
-        <p><strong>Description:</strong></p>
-        <p th:text="${game.description}"></p>
-        <div class="actions">
-            <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
-                Review</a>
-            <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
-                Edit</a>
-            <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
-                Delete</a>
-        </div>
+            <h4>
+                <a th:href="@{/reviews/{id}(id=${game.id})}" th:text="${game.title}"></a>
+            </h4>
+            <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
+            <p><strong>Release Year:</strong> <span th:text="${game.releaseYear}"></span></p>
+            <p><strong>Price:</strong> <span th:text="${game.price} + '€'"></span></p>
+            <p><strong>Genre:</strong> <span th:text="${game.genre.name}"></span></p>
+            <p><strong>Platforms:</strong></p>
+            <ul>
+                <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
+            </ul>
+            <p><strong>Description:</strong></p>
+            <p th:text="${game.description}"></p>
+            <div class="actions">
+                <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
+                    Review</a>
+                <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
+                    Edit</a>
+                <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
+                    Delete</a>
+            </div>
         </div>
     </div>
 </div>
 </body>
 </html>
- 
