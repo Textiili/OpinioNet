@@ -83,14 +83,16 @@ body {
 }
 
 .nav-buttons form {
-    margin-left: 10px; 
+    margin-right: 20px; 
 }
 
 .btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
+    border: 1px outset rgb(255, 255, 255);
+    background-color: #b3b6b9;
+    height:auto;
+    width:auto;
     cursor: pointer;
+    font-family: 'Minecraft', sans-serif;
     text-decoration: none;
 }
 
@@ -100,6 +102,8 @@ body {
 }
 
 .btn-secondary {
+    margin-right: 40px;
+    border: transparent;
     background-color: transparent; 
     color: #fff;
 }
