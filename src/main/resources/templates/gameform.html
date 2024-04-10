@@ -25,7 +25,7 @@
             <option value="" disabled selected hidden>Select Genre</option>
             <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
         </select>
-        <button type="submit">Submit</button>
+        <input type="reset" value="Reset"><button type="submit">Submit</button>
     </form>
     <br>
     <a th:href="@{/}">Back to index</a>
