@@ -1,3 +1,9 @@
+@import url('https://fonts.cdnfonts.com/css/minecraft-3');
+
+body {
+    font-family: 'Minecraft', sans-serif;
+}
+
 .game-container {
     display: flex;
     flex-wrap: wrap;
@@ -68,7 +74,7 @@
 }
 
 .logo img {
-    width: 100px; 
+    width: 250px; 
 }
 
 .nav-buttons {
@@ -107,6 +113,9 @@
 .btn-success:hover {
     opacity: 0.8;
 }
+
+                                                
+
 
 
 
