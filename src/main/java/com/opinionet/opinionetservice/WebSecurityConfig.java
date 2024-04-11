@@ -28,6 +28,7 @@ public class WebSecurityConfig {
           .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
           .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
           .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
+          .requestMatchers(antMatcher("/error")).permitAll()
         	.anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin

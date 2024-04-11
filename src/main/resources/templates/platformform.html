@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
-    <h3>Add/Edit Platform</h3>
+    <h3 id="dynamicHeading">Add Platform</h3>
     <form action="#" method="post" th:action="@{/saveplatform}" th:object="${platform}">
         <input type="hidden" th:field="*{id}" />
         <input type="text" th:field="*{name}" placeholder="Name" required>
@@ -15,5 +15,14 @@
     </form>
     <br>
     <a th:href="@{/platformlist}">Back to platform list</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentUrl = window.location.href;
+            if (currentUrl.includes('/editplatform')) 
+            var header = document.getElementById('dynamicHeading');
+            header.innerText = 'Edit Platform';
+        });
+    </script>
 </body>
 </html>

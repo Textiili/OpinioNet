@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
-    <h3>Add/Edit Review</h3>
+    <h3>Add Review</h3>
     <form th:action="@{/reviews/{gameId}(gameId=${game.id})}" th:object="${review}" method="post">
         <input type="hidden" th:field="*{id}" />
         <div>
@@ -20,5 +20,14 @@
         </div>
         <input type="reset" value="Reset"><button type="submit">Submit Review</button>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var currentUrl = window.location.href;
+            if (currentUrl.includes('/editreview')) 
+            var header = document.getElementById('dynamicHeading');
+            header.innerText = 'Edit Review';
+        });
+    </script>
 </body>
 </html>
