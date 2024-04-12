@@ -3,6 +3,7 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 //TODO: Validation
 @Entity
@@ -18,9 +19,11 @@ public class Game {
     private String bannerImageUrl;
 
     @ManyToOne()
+    @JsonIgnoreProperties({"games","id"})
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
+    @JsonIgnoreProperties("game")
     @OneToMany(
         mappedBy = "game", 
         cascade = CascadeType.ALL, 
@@ -29,6 +32,7 @@ public class Game {
     private Set<Review> reviews = new HashSet<>();
 
     @ManyToMany()
+    @JsonIgnoreProperties( {"games","id"})
     @JoinTable(
         name = "game_platform",
         joinColumns = @JoinColumn(name = "game_id"),

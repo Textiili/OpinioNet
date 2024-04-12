@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/mystyle.css" th:href="@{/css/mystyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en">
@@ -20,6 +20,7 @@
         </div>
         <input type="reset" value="Reset"><button type="submit">Submit Review</button>
     </form>
+    <a th:href="@{/reviews/{gameId}(gameId=${game.id})}">Back to reviews</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

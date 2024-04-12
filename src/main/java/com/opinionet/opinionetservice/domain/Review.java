@@ -3,11 +3,15 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //TODO: Validation!
 @Entity
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Long id;
     private String reviewText;
     private Float rating;
@@ -15,10 +19,12 @@ public class Review {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @JsonIgnoreProperties("reviews")
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    
     @ManyToOne
     @JoinColumn(name = "game_id")
     private Game game;

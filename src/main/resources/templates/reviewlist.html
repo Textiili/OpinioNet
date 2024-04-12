@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/mystyle.css" th:href="@{/css/mystyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en">
@@ -31,6 +31,7 @@
         </table>
     </div>
     <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">Add Review</a>
+    <a th:href="@{/}">Back to index</a>
 </body>
 </html>
 

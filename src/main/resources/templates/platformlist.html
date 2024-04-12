@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/mystyle.css" th:href="@{/css/mystyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en">
@@ -20,8 +20,8 @@
             <tr th:each="platform : ${platforms}">
                 <td th:text="${platform.name}"></td>
                 <td>
-                    <a th:href="@{/editplatform/{id}(id=${platform.id})}" class="btn btn-success">Edit</a>
-                    <a th:href="@{/deleteplatform/{id}(id=${platform.id})}" class="btn btn-danger" 
+                    <a th:href="@{/editplatform/{id}(id=${platform.id})}">Edit</a>
+                    <a th:href="@{/deleteplatform/{id}(id=${platform.id})}"  
                         onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
                 </td>
             </tr>
@@ -29,7 +29,7 @@
     </table>
     <br>
     <br>
-    <a th:href="@{/addplatform}" class="btn btn-primary">Add Platform</a>
+    <a th:href="@{/addplatform}">Add Platform</a>
     <a th:href="@{/}">Back to index</a>
     <br>
 </body>

@@ -1,6 +1,6 @@
 package com.opinionet.opinionetservice.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +18,7 @@ public class Platform {
     private String name;
 
     @ManyToMany(mappedBy = "platforms", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
-    @JsonIgnoreProperties("platforms")
+    @JsonIgnore
     private Set<Game> games = new HashSet<>();
 
     public Platform() {}
