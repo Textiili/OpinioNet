@@ -17,42 +17,46 @@ public class Game {
     private Float price;
     private String bannerImageUrl;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+        mappedBy = "game", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true
+    )
     private Set<Review> reviews = new HashSet<>();
 
-    @ManyToMany
-    @JoinTable(name = "game_platform",
-               joinColumns = @JoinColumn(name = "game_id"),
-               inverseJoinColumns = @JoinColumn(name = "platform_id"))
+    @ManyToMany()
+    @JoinTable(
+        name = "game_platform",
+        joinColumns = @JoinColumn(name = "game_id"),
+        inverseJoinColumns = @JoinColumn(name = "platform_id")
+    )
     private Set<Platform> platforms = new HashSet<>();
 
     public Game() {
-        this.genre = new Genre("-");
-        this.platforms.add(new Platform("-"));
     }
 
     public Game(String title, String developer, Integer releaseYear, String description, Float price) {
+        this();
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
-        this.genre = new Genre("-");
-        this.platforms.add(new Platform("-"));
     }
 
-    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre, Platform platform) {
+    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre, Set<Platform> platforms) {
+        this();
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
         this.genre = genre;
-        this.platforms.add(platform);
+        this.platforms = platforms;
     }
 
     public Game(String title, String developer, Integer releaseYear, String description, Float price, String bannerImageUrl, Genre genre, Platform platform) {

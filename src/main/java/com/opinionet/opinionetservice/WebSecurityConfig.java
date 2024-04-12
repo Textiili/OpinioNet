@@ -22,14 +22,14 @@ public class WebSecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
       http
       .authorizeHttpRequests( authorize -> authorize
-        	.requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
-          .requestMatchers(antMatcher("/images/**")).permitAll() //Salli kuvat
-          .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
-          .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
-          .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
-          .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
-          .requestMatchers(antMatcher("/error")).permitAll()
-        	.anyRequest().authenticated()
+        .requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
+        .requestMatchers(antMatcher("/images/**")).permitAll() //Salli kuvat
+        .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
+        .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
+        .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
+        .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
+        .requestMatchers(antMatcher("/error")).permitAll()
+        .anyRequest().authenticated()
       )
       .formLogin(formlogin -> formlogin
         .defaultSuccessUrl("/", true) // <- käytettävyyden kannalta älä ohjaa aina index?

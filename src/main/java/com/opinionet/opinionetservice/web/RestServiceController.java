@@ -1,5 +1,7 @@
 package com.opinionet.opinionetservice.web;
 
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,66 +32,82 @@ public class RestServiceController {
     @Autowired PlatformRepository platformRepository;
 
     //Rest-toiminnot peleille
-    @GetMapping("/games")
+    @GetMapping("/api/games")
     public Iterable<Game> getAllGames() {
         return gameRepository.findAll();
     }
 
-    @GetMapping("/genre/{id}")
+    @GetMapping("/api/games/{id}")
     public @ResponseBody Optional<Game> getGameById(@PathVariable("id") Long id) {
 		return gameRepository.findById(id);
 	}
 
-	@PostMapping("/games")
+	@PostMapping("/api/games")
 	Game newGame(@RequestBody Game newGame) {
+        if (newGame.getGenre() == null) {
+            if (genreRepository.findByName("undefined") == null) {
+                genreRepository.save(new Genre("undefined")); 
+            }
+            newGame.setGenre(genreRepository.findByName("undefined"));
+        }
+
+        if (newGame.getPlatforms().isEmpty()) {
+            Set<Platform> platforms = new HashSet<>();
+            if (platformRepository.findByName("undefined") == null) {
+                platformRepository.save(new Platform("undefined"));
+            }
+            Platform platform = platformRepository.findByName("undefined");
+            platforms.add(platform);
+            newGame.setPlatforms(platforms);
+        }
 		return gameRepository.save(newGame);
 	}
 
-	@PutMapping("/games/{id}")
+	@PutMapping("/api/games/{id}")
 	Game editGame(@RequestBody Game editedGame, @PathVariable Long id) {
 		editedGame.setId(id);
 		return gameRepository.save(editedGame);
 	}
 
     //Rest-toiminnot genreille
-    @GetMapping("/genres")
+    @GetMapping("/api/genres")
     public Iterable<Genre> getAllGenres() {
         return genreRepository.findAll();
     }
 
-    @GetMapping("/genres/{id}")
+    @GetMapping("/api/genres/{id}")
     public @ResponseBody Optional<Genre> getGenreById(@PathVariable("id") Long id) {
 		return genreRepository.findById(id);
 	}
 
-	@PostMapping("/genres")
+	@PostMapping("/api/genres")
 	Genre newGenre(@RequestBody Genre newGenre) {
 		return genreRepository.save(newGenre);
 	}
 
-	@PutMapping("/genres/{id}")
+	@PutMapping("/api/genres/{id}")
 	Genre editGenre(@RequestBody Genre editedGenre, @PathVariable Long id) {
 		editedGenre.setId(id);
 		return genreRepository.save(editedGenre);
 	}
 
     //Rest-toiminnot platformeille
-    @GetMapping("/platforms")
+    @GetMapping("/api/platforms")
     public Iterable<Platform> getAllPlatforms() {
         return platformRepository.findAll();
     }
 
-    @GetMapping("/platforms/{id}")
+    @GetMapping("/api/platforms/{id}")
     public @ResponseBody Optional<Platform> getPlatformById(@PathVariable("id") Long id) {
 		return platformRepository.findById(id);
 	}
 
-	@PostMapping("/platforms")
+	@PostMapping("/api/platforms")
 	Platform newPlatform(@RequestBody Platform newPlatform) {
 		return platformRepository.save(newPlatform);
 	}
 
-	@PutMapping("/platforms/{id}")
+	@PutMapping("/api/platforms/{id}")
 	Platform editPlatform(@RequestBody Platform editedPlatform, @PathVariable Long id) {
 		editedPlatform.setId(id);
 		return platformRepository.save(editedPlatform);

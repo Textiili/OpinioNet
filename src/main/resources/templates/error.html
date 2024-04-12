@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <title>OpinioNet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en">
+</head>
+<body>
+    <h3>Error</h3>
+    <p th:text="${errorMessage}"></p>
+    <a th:href="@{/}">Back to index</a>
+</body>
+</html>

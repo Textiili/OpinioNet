@@ -15,13 +15,13 @@
         <input type="number" th:field="*{releaseYear}" placeholder="Release Year" required>
         <input type="text" th:field="*{description}" placeholder="Description" required>
         <input type="number" th:field="*{price}" step="0.01" placeholder="Price" required>
-        <input type="text" th:field="*{bannerImageUrl}" placeholder="bannerImageUrl" required>
+        <input type="text" th:field="*{bannerImageUrl}" placeholder="bannerImageUrl">
         
-        <select multiple="multiple" name="platformIds" class="form-control" required>
+        <select multiple="multiple" name="platformIds" class="form-control">
             <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
         </select>
         
-        <select th:field="*{genre}" class="form-control" required>
+        <select th:field="*{genre}" class="form-control" required> 
             <option value="" disabled selected hidden>Select Genre</option>
             <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
         </select>
