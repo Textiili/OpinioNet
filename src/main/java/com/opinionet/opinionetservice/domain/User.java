@@ -1,9 +1,10 @@
 package com.opinionet.opinionetservice.domain;
 
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "users")
@@ -16,6 +17,7 @@ public class User {
     private Long id;
 
     @Column(name = "username", nullable = false, unique = true)
+    @NotBlank(message = "Username is required")
     private String username;
 
     @Column(name = "password_hash", nullable = false)

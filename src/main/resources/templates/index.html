@@ -21,8 +21,8 @@
         <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
             <button type="submit" class="btn btn-sm btn-primary">Login</button>
         </form>
-        <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/signup}" method="get">
-            <button type="submit" class="btn btn-sm btn-success">Signup</button>
+        <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/register}" method="get">
+            <button type="submit" class="btn btn-sm btn-success">Register</button>
         </form>
     </div>
 </nav>

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <title>OpinioNet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en">
+</head>
+<body>
+    <h1>Login</h1>
+    <span th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}" 
+        th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+    <form th:action="@{/login}" method="post">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" value="" required></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

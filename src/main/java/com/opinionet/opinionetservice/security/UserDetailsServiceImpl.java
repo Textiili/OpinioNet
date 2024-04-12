@@ -1,4 +1,4 @@
-package com.opinionet.opinionetservice.web;
+package com.opinionet.opinionetservice.security;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,8 +21,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         User curruser = userRepository.findByUsername(username);
 
-		if (curruser == null || curruser.getPasswordHash() == null) {
-			throw new CustomExceptionMessage("Invalid credentials");
+		if (curruser == null) {
+			throw new CustomExceptionMessage("Bad credentials");
 		}
         UserDetails user = new org.springframework.security.core.userdetails.User(
 			username, 
@@ -32,3 +32,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 }
+

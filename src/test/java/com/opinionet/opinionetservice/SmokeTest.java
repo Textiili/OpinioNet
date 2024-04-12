@@ -35,7 +35,7 @@ public class SmokeTest {
     @Test
     public void indexPageLoads() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/", String.class))
-        .contains("All Games");
+        .contains("Signup");
     }
 
     @Test
