@@ -23,15 +23,16 @@
             <tbody>
                 <tr th:each="review : ${reviews}">
                     <td th:if="${review.user != null}" th:text="${review.user.username}"></td>
-                    <td th:if="${review.user == null}">Anonymous</td> <!--TODO: Poista? -->
+                    <td th:if="${review.user == null}">Anonymous??</td> 
                     <td th:text="${review.rating}"></td>
                     <td th:text="${review.reviewText}"></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <a th:href="@{/addreview/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">Add Review</a>
+    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
+        Review <span th:text="${game.title}"></span></a>
     <a th:href="@{/}">Back to index</a>
 </body>
 </html>
-
+                

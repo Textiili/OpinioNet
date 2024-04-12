@@ -78,5 +78,6 @@ public class GameController {
         gameRepository.deleteById(gameId);
         return "redirect:/";
     }
+    //TODO: Validation
 }
 

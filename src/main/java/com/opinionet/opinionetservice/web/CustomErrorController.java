@@ -13,6 +13,6 @@ public class CustomErrorController implements ErrorController {
     public String redirectToErrorPage(HttpServletRequest request, Model model) {
         Object errorMessage = request.getAttribute("jakarta.servlet.error.message");
         model.addAttribute("errorMessage", errorMessage != null ? errorMessage.toString() : "Unknown error");
-        return "error";
+        return "error"; //TODO: Fix unknown error
     }
 }
