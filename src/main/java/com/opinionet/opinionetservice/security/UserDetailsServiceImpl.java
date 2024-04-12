@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) {
         User curruser = userRepository.findByUsername(username);
 
-		if (curruser == null) {
+		if (curruser == null || curruser.getPasswordHash() == null) {
 			throw new CustomExceptionMessage("Bad credentials");
 		}
         UserDetails user = new org.springframework.security.core.userdetails.User(

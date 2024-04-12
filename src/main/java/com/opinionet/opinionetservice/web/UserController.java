@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
@@ -18,6 +20,19 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/userlist")
+    public String userList(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "userlist";
+    }
+
+    @GetMapping("/deleteuser/{id}")
+    public String deleteUser(@PathVariable("id") Long userId) {
+        userRepository.deleteById(userId);
+        return "redirect:/userlist";
+    }
 
     @GetMapping("/login")
     public String loginPage() {

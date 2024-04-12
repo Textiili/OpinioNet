@@ -7,27 +7,29 @@
     <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
-    <h3>All Genres</h3>
+    <h3>All Users</h3>
 
     <table>
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Role</th>
+                <th>PasswordHash</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="genre : ${genres}">
-                <td th:text="${genre.name}"></td>
-    
-                <td><a th:href="@{/editgenre/{id}(id=${genre.id})}">Edit</a></td>
-                <td><a th:href="@{/deletegenre/{id}(id=${genre.id})}"
-                    onclick="return confirm('Are you sure you want to delete this?')">Delete</a></td>
+            <tr th:each="user : ${users}" th:unless="${user.username == 'admin'}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.role}"></td>
+                <td th:text="${user.passwordHash}"></td>
+                <td>
+                    <a th:href="@{/deleteuser/{id}(id=${user.id})}"  
+                        onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>
     <br>
-    <br>
-    <a th:href="@{/addgenre}">Add Genre</a>
     <a th:href="@{/}">Back to index</a>
 </body>
 </html>
