@@ -38,7 +38,7 @@ public class ReviewController {
             List<Review> reviews = new ArrayList<>(game.getReviews());
             model.addAttribute("game", game);
             model.addAttribute("reviews", reviews);
-            return "reviewlist";
+            return "reviewpage";
         } else {
             return "/error"; 
         }
@@ -79,5 +79,5 @@ public class ReviewController {
         }
     }
 
-    //TODO: Delete ja Edit! Access vain omistajalla, testaa POSTMAN
+    //TODO: Delete ja Edit! Access vain omistajalla
 }
