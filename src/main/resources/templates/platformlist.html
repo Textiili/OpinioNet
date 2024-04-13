@@ -14,16 +14,14 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="platform : ${platforms}">
                 <td th:text="${platform.name}"></td>
-                <td>
-                    <a th:href="@{/editplatform/{id}(id=${platform.id})}">Edit</a>
-                    <a th:href="@{/deleteplatform/{id}(id=${platform.id})}"  
-                        onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+                <td><a th:href="@{/editplatform/{id}(id=${platform.id})}">Edit</a></td>
+                <td><a th:href="@{/deleteplatform/{id}(id=${platform.id})}"  
+                    onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
                 </td>
             </tr>
         </tbody>

@@ -13,7 +13,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
+
+    @Lob
     private String reviewText;
+    
     private Float rating;
 
     @Temporal(TemporalType.TIMESTAMP)

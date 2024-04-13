@@ -11,12 +11,20 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
+
     private String developer;
+
     private Integer releaseYear;
+
+    @Lob
     private String description;
+
     private Float price;
+
     private String bannerImageUrl;
+
     private String backgroundImageUrl;
 
     @ManyToOne()

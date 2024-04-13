@@ -11,8 +11,14 @@
     <h3 id="dynamicHeading">Add Genre</h3>
     <form action="#" method="post" th:action="@{/savegenre}" th:object="${genre}">
         <input type="hidden" th:field="*{id}" />
-        <input type="text" th:field="*{name}" placeholder="Name" required>
-        <input type="reset" value="Reset"><button type="submit">Submit</button>
+        <table>
+            <tr>
+                <td><input type="text" th:field="*{name}" placeholder="Name" required></td>
+            </tr>
+            <tr>
+                <td><input type="reset" value="Reset"><button type="submit">Submit</button></td>
+            </tr>
+        </table>
     </form>
     <br>
     <a th:href="@{/genrelist}">Back to genre list</a>
