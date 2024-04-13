@@ -1,62 +1,60 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
-<title>OpinioNet</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="Content-Language" content="en">
+    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <title>OpinioNet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
-<nav class="navbar">
-    <div class="logo">
-        <img src="/images/OpinioNet.png" alt="OpinioNet Logo">
-    </div>
-    <div class="nav-buttons">
-        <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Add Game</a>
-        <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
-        <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
-        <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>
-        <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
-            <button type="submit" class="btn btn-sm btn-danger">Logout</button>
-        </form>
-        <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
-            <button type="submit" class="btn btn-sm btn-primary">Login</button>
-        </form>
-        <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/register}" method="get">
-            <button type="submit" class="btn btn-sm btn-success">Register</button>
-        </form>
-    </div>
-</nav>
-<div class="game-container">
-    <div th:each="game : ${games}" class="game-box">
-        <div class="image-container">
-            <!-- <img th:src="${game.bannerImageUrl}" alt="undefined" /> -->
-            <!-- <img th:attr="src=@{${game.bannerImageUrl}}, alt=${game.bannerImageUrl}"> -->
-            <img src="https://cdn2.steamgriddb.com/thumb/f4b9fe69627367c32498f4fd02de118c.jpg" alt="haista paska thymeleaf"/>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/OpinioNet.png" alt="OpinioNet Logo">
         </div>
-        <div class="info-container">
-            <h4>
-                <a th:href="@{/reviews/{id}(id=${game.id})}" th:text="${game.title}"></a>
-            </h4>
-            <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
-            <p><strong>Release Year:</strong> <span th:text="${game.releaseYear}"></span></p>
-            <p><strong>Price:</strong> <span th:text="${game.price} + ' €'"></span></p>
-            <p><strong>Genre:</strong> <span th:text="${game.genre.name}"></span></p>
-            <p><strong>Platforms:</strong></p>
-            <ul>
-                <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
-            </ul>
-            <p><strong>Description:</strong></p>
-            <p th:text="${game.description}"></p>
-            <div class="actions">
-                <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
-                    Edit</a>
-                <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')"
-                    onclick="return confirm('Are you sure you want to delete this?')">
-                    Delete</a>
+        <div class="nav-buttons">
+            <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Add Game</a>
+            <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
+            <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
+            <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>
+            <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
+                <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+            </form>
+            <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
+                <button type="submit" class="btn btn-sm btn-primary">Login</button>
+            </form>
+            <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/register}" method="get">
+                <button type="submit" class="btn btn-sm btn-success">Register</button>
+            </form>
+        </div>
+    </nav>
+    <div class="game-container">
+        <div th:each="game : ${games}" class="game-box">
+            <div class="image-container">
+                <img th:src="${game.bannerImageUrl}" alt="Couldn't load" />
+            </div>
+            <div class="info-container">
+                <h4>
+                    <a th:href="@{/reviews/{id}(id=${game.id})}" th:text="${game.title}"></a>
+                </h4>
+                <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
+                <p><strong>Release Year:</strong> <span th:text="${game.releaseYear}"></span></p>
+                <p><strong>Price:</strong> <span th:text="${game.price} + ' €'"></span></p>
+                <p><strong>Genre:</strong> <span th:text="${game.genre.name}"></span></p>
+                <p><strong>Platforms:</strong></p>
+                <ul>
+                    <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
+                </ul>
+                <p><strong>Description:</strong></p>
+                <p th:text="${game.description}"></p>
+                <div class="actions">
+                    <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
+                        Edit</a>
+                    <a th:href="@{/deletegame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')"
+                        onclick="return confirm('Are you sure you want to delete this?')">
+                        Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>
