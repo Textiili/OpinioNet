@@ -18,8 +18,8 @@ public class Genre {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
-    @Size(max=30)
+    @NotBlank(message = "Cannot be blank spaces!")
+    @Size(max=40, message= "Max 40 characters!")
     private String name;
 
     @JsonIgnore

@@ -13,8 +13,8 @@ public class Platform {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
-    @Size(max=20)
+    @NotBlank(message = "Cannot be blank spaces!")
+    @Size(max=20, message = "Max 20 charactes!")
     private String name;
 
     @ManyToMany(mappedBy = "platforms", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })

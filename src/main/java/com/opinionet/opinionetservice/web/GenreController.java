@@ -46,7 +46,7 @@ public class GenreController {
         } else {
             genreRepository.save(genre);
             return "redirect:/genrelist";
-        } //TODO: Validation message
+        }
     }
 
     @GetMapping("/deletegenre/{id}")

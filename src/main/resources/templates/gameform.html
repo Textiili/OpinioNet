@@ -36,18 +36,25 @@
         <table>
             <tr>
                 <td><input type="text" th:field="*{title}" placeholder="Title" required></td>
+                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</td>
             </tr>
             <tr>
                 <td><input type="text" th:field="*{developer}" placeholder="Developer" required></td>
+                <td th:if="${#fields.hasErrors('developer')}" th:errors="*{developer}">Error</td>
             </tr>
             <tr>
                 <td><input type="number" th:field="*{releaseYear}" placeholder="Release Year" required></td>
+                <td th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Error</td>
             </tr>
             <tr>
-                <td><textarea id="description" th:field="*{description}" rows="4" cols="50" required></textarea></td>
+                <td><textarea id="description" th:field="*{description}" rows="4" cols="50"></textarea></td>
             </tr>
             <tr>
                 <td><input type="number" th:field="*{price}" step="0.01" placeholder="Price" required></td>
+                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.steamgriddb.com/" target="_blank">Fitting Image URLs from SteamGridDB</a></td>
             </tr>
             <tr>
                 <td><input type="text" th:field="*{bannerImageUrl}" placeholder="bannerImageUrl"></td>

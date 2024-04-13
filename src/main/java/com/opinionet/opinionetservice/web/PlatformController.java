@@ -45,7 +45,7 @@ public class PlatformController {
     }
 
     @PostMapping("/saveplatform")
-    public String savePlatform(@Valid @ModelAttribute("platform") Platform platform, BindingResult bindingResult) {
+    public String savePlatform(@Valid @ModelAttribute() Platform platform, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "platformform";
         } else {

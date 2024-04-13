@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerSubmit(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    public String registerSubmit(@Valid @ModelAttribute() User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "register";
         } else {

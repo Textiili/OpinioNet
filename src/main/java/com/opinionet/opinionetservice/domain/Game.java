@@ -1,21 +1,29 @@
 package com.opinionet.opinionetservice.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+
 import java.util.HashSet;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//TODO: Validation
 @Entity
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Cannot be blank spaces!")
+    @Size(max=60, message = "Max 60 characters!")
     private String title;
 
+    @NotBlank(message = "Cannot be blank spaces!")
+    @Size(max=40, message = "Max 40 characters!")
     private String developer;
 
+    @Positive(message = "Year cannot be negative number!")
     private Integer releaseYear;
 
     @Lob

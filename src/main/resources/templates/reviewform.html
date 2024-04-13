@@ -14,7 +14,7 @@
         </div>
         <div class="nav-buttons">
             <a th:href="@{/}" class="btn btn-sm btn-secondary">Game List</a>
-            <a th:href="@{/reviews/{gameId}(gameId=${game.id})}">Back to reviews</a>
+            <a th:href="@{/reviews/{gameId}(gameId=${game.id})}" class="btn btn-sm btn-secondary">Reviews</a>
             <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
             <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
             <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>

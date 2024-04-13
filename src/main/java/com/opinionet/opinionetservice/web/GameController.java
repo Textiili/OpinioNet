@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.access.prepost.PreAuthorize;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.GameRepository;
@@ -58,8 +60,16 @@ public class GameController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/savegame")
-    public String saveGame(@ModelAttribute Game game, @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional) {
-        Set<Platform> platforms = new HashSet<>();
+    public String saveGame(
+        @Valid @ModelAttribute() Game game, 
+        @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional,
+        BindingResult bindingResult
+        ) 
+    {   //Jos validointi menee läpi siirrytään eteenpäin
+        if (bindingResult.hasErrors()) {
+            return "gameform";
+        } else {
+            Set<Platform> platforms = new HashSet<>();
         if (platformIdsOptional.isPresent()) {
             List<Long> platformIds = platformIdsOptional.get();
             for (Long platformId : platformIds) {
@@ -78,6 +88,7 @@ public class GameController {
             gameRepository.save(game);
         }
         return "redirect:/";
+        }
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
