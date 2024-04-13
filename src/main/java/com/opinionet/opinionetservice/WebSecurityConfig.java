@@ -23,32 +23,33 @@ public class WebSecurityConfig {
 
   @Bean
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-      http.authorizeHttpRequests(authorize -> authorize
-              .requestMatchers(antMatcher("/login")).permitAll() //Salli login
-              .requestMatchers(antMatcher("/register")).permitAll() //Salli login
-              .requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
-              .requestMatchers(antMatcher("/images/**")).permitAll() //Salli kuvat
-              .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
-              .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
-              .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
-              .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
-              .requestMatchers(antMatcher("/error")).permitAll()
-              .anyRequest().authenticated()
+
+    http.authorizeHttpRequests(authorize -> authorize
+    .requestMatchers(antMatcher("/login")).permitAll() //Salli login
+    .requestMatchers(antMatcher("/register")).permitAll() //Salli login
+    .requestMatchers(antMatcher("/css/**")).permitAll() //Salli css
+    .requestMatchers(antMatcher("/images/**")).permitAll() //Salli kuvat
+    .requestMatchers(antMatcher("/")).permitAll() //Salli indeksi
+    .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
+    .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
+    .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
+    .requestMatchers(antMatcher("/error")).permitAll()
+    .anyRequest().authenticated()
+    )
+      .formLogin(formlogin -> formlogin
+        .loginPage("/login")
+        .defaultSuccessUrl("/") //TODO: Tee käytettävyyden kannalta parempi logiikka
+        .permitAll()
       )
-              .formLogin(formlogin -> formlogin
-                      .loginPage("/login")
-                      .defaultSuccessUrl("/", true) // <- käytettävyyden kannalta älä ohjaa aina index?
-                      .permitAll()
-              )
-              //To enable h2-console
-              .csrf(csrf -> csrf.disable())
-              .headers(headers -> headers.disable())
-              .logout(logout -> logout
-                      .invalidateHttpSession(true)
-                      .logoutSuccessUrl("/")
-                      .permitAll()
-              );
-      return http.build();
+      //To enable h2-console
+      .csrf(csrf -> csrf.disable())
+      .headers(headers -> headers.disable())
+      .logout(logout -> logout
+      .invalidateHttpSession(true)
+      .logoutSuccessUrl("/")
+      .permitAll()
+      );
+    return http.build();
   }
 
   @Autowired

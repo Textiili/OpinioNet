@@ -13,7 +13,8 @@
             <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
         </div>
         <div class="nav-buttons">
-            <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Add Game</a>
+            <a th:href="@{/}" class="btn btn-sm btn-secondary">Game List</a>
+            <a th:href="@{/reviews/{gameId}(gameId=${game.id})}">Back to reviews</a>
             <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
             <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
             <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>
@@ -30,7 +31,7 @@
     </nav>
 
     <h3>Add Review</h3>
-    
+
     <form th:action="@{/reviews/{gameId}(gameId=${game.id})}" th:object="${review}" method="post">
         <input type="hidden" th:field="*{id}" />
         <table>
@@ -45,8 +46,8 @@
             </tr>
         </table>
     </form>
-    <br>
-    <a th:href="@{/reviews/{gameId}(gameId=${game.id})}">Back to reviews</a>
+    <!-- <br>
+    <a th:href="@{/reviews/{gameId}(gameId=${game.id})}">Back to reviews</a> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
