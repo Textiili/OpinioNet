@@ -59,13 +59,21 @@ public class GameController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/savegame")
     public String saveGame(@ModelAttribute Game game, @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional) {
+        Set<Platform> platforms = new HashSet<>();
         if (platformIdsOptional.isPresent()) {
-            Set<Platform> platforms = new HashSet<>();
             List<Long> platformIds = platformIdsOptional.get();
             for (Long platformId : platformIds) {
                 platforms.add(platformRepository.findById(platformId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid platform ID: " + platformId)));
             }
+            game.setPlatforms(platforms);
+            gameRepository.save(game);
+        } else {
+            if (platformRepository.findByName("undefined") == null) {
+                platformRepository.save(new Platform("undefined"));
+            }
+            Platform platform = platformRepository.findByName("undefined");
+            platforms.add(platform);
             game.setPlatforms(platforms);
             gameRepository.save(game);
         }

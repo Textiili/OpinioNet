@@ -30,7 +30,9 @@
 <div class="game-container">
     <div th:each="game : ${games}" class="game-box">
         <div class="image-container">
-            <img th:src="${game.bannerImageUrl}" alt="undefined" />
+            <!-- <img th:src="${game.bannerImageUrl}" alt="undefined" /> -->
+            <!-- <img th:attr="src=@{${game.bannerImageUrl}}, alt=${game.bannerImageUrl}"> -->
+            <img src="https://cdn2.steamgriddb.com/thumb/f4b9fe69627367c32498f4fd02de118c.jpg" alt="haista paska thymeleaf"/>
         </div>
         <div class="info-container">
             <h4>
