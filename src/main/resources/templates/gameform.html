@@ -22,7 +22,7 @@
                 <td><input type="number" th:field="*{releaseYear}" placeholder="Release Year" required></td>
             </tr>
             <tr>
-                <td><input type="text" th:field="*{description}" placeholder="Description" required></td>
+                <td><textarea id="description" th:field="*{description}" rows="4" cols="50" required></textarea></td>
             </tr>
             <tr>
                 <td><input type="number" th:field="*{price}" step="0.01" placeholder="Price" required></td>
