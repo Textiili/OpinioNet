@@ -8,7 +8,29 @@
     <meta http-equiv="Content-Language" content="en">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
+        </div>
+        <div class="nav-buttons">
+            <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Add Game</a>
+            <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
+            <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
+            <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>
+            <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
+                <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+            </form>
+            <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/login}" method="get">
+                <button type="submit" class="btn btn-sm btn-primary">Login</button>
+            </form>
+            <form th:unless="${#authorization.expression('isAuthenticated()')}" th:action="@{/register}" method="get">
+                <button type="submit" class="btn btn-sm btn-success">Register</button>
+            </form>
+        </div>
+    </nav>
+
     <h3 id="dynamicHeading">Add Genre</h3>
+    
     <form action="#" method="post" th:action="@{/savegenre}" th:object="${genre}">
         <input type="hidden" th:field="*{id}" />
         <table>
