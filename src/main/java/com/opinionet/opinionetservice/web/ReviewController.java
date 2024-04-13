@@ -110,8 +110,8 @@ public class ReviewController {
             Review review = optionalReview.get();
             Long gameId = review.getGame().getId();
             reviewRepository.delete(review);
-            return "redirect:/reviews/" + gameId; } 
-            else {
+            return "redirect:/reviews/" + gameId; 
+        } else {
             return "/error";
         }
     }
