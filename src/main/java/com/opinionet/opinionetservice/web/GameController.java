@@ -61,42 +61,33 @@ public class GameController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/savegame")
-    public String saveGame(
-        @Valid @ModelAttribute() Game game, 
-        @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional,
-        BindingResult bindingResult,
-        Model model
+    public String saveGame(//TODO: Validation!
+        @ModelAttribute() Game game,
+        @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional
         ) 
     {   
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("game", game); //TODO: This mess
-            model.addAttribute("platforms", platformRepository.findAll()); 
-            model.addAttribute("genres", genreRepository.findAll());
-            return "gameform"; } 
-        else {
-            Set<Platform> platforms = new HashSet<>();
+        Set<Platform> platforms = new HashSet<>();
             
-            if (platformIdsOptional.isPresent()) {
-            List<Long> platformIds = platformIdsOptional.get();
-            for (Long platformId : platformIds) {
-                platforms.add(platformRepository.findById(platformId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid platform ID: " + platformId)));
+        if (platformIdsOptional.isPresent()) {
+        List<Long> platformIds = platformIdsOptional.get();
+        for (Long platformId : platformIds) {
+            platforms.add(platformRepository.findById(platformId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid platform ID: " + platformId)));
+        }
+        game.setPlatforms(platforms);
+        gameRepository.save(game); }
+        else {
+            if (platformRepository.findByName("undefined") == null) {
+                platformRepository.save(new Platform("undefined"));
             }
+            Platform platform = platformRepository.findByName("undefined");
+            platforms.add(platform);
             game.setPlatforms(platforms);
             gameRepository.save(game);
-            return "redirect:/";} 
-            else {
-                if (platformRepository.findByName("undefined") == null) {
-                    platformRepository.save(new Platform("undefined"));
-                }
-                Platform platform = platformRepository.findByName("undefined");
-                platforms.add(platform);
-                game.setPlatforms(platforms);
-                gameRepository.save(game);
-                return "redirect:/";
-            }
         }
+        return "redirect:/";
     }
+    
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deletegame/{id}")
@@ -105,4 +96,14 @@ public class GameController {
         return "redirect:/";
     }
 }
-
+//TODO: Toimivat errorit
+// @PreAuthorize("hasAuthority('ADMIN')")
+    // @PostMapping("/savegame")
+    // public String saveGame(@Valid @ModelAttribute() Game game, BindingResult bindingResult, Model model) {   
+    //     if (bindingResult.hasErrors()) {
+    //         model.addAttribute("platforms", platformRepository.findAll());
+    //         model.addAttribute("genres", genreRepository.findAll());
+    //         return "gameform";
+    //     }
+    //     return "redirect:/";
+    // }

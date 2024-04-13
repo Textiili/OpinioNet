@@ -102,16 +102,18 @@ public class ReviewController {
         }
     }
 
-    //TODO: Implement this!
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/deletereview/{reviewId}")
     public String deleteReview(@PathVariable Long reviewId) {
-        Optional<Review> optionalReview = reviewRepository.findById(reviewId);
+    Optional<Review> optionalReview = reviewRepository.findById(reviewId);
         if (optionalReview.isPresent()) {
-            reviewRepository.delete(optionalReview.get());
-            return "redirect:/reviewpage";
-        } else {
+            Review review = optionalReview.get();
+            Long gameId = review.getGame().getId();
+            reviewRepository.delete(review);
+            return "redirect:/reviews/" + gameId; } 
+            else {
             return "/error";
         }
     }
+
 }

@@ -30,7 +30,7 @@
         </div>
     </nav>
 
-    <h3>Add Review</h3>
+    <h3>Your review for <span th:text="${game.title}"></span></h3>
 
     <form th:action="@{/reviews/{gameId}(gameId=${game.id})}" th:object="${review}" method="post">
         <input type="hidden" th:field="*{id}" />
@@ -43,6 +43,13 @@
             </tr>
             <tr>
                 <td><input type="reset" value="Reset"><button type="submit">Submit Review</button></td>
+            </tr>
+            <tr th:if="${review.id != null}">
+                <td>
+                    <a th:href="@{/deletereview/{reviewId}(reviewId=${review.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
+                        Delete review for <span th:text="${game.title}"></span>
+                    </a>
+                </td>
             </tr>
         </table>
     </form>
