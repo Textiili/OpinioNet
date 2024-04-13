@@ -17,6 +17,7 @@ public class Game {
     private String description;
     private Float price;
     private String bannerImageUrl;
+    private String backgroundImageUrl;
 
     @ManyToOne()
     @JsonIgnoreProperties({"games","id"})
@@ -52,7 +53,16 @@ public class Game {
         this.price = price;
     }
 
-    public Game(String title, String developer, Integer releaseYear, String description, Float price, Genre genre, Set<Platform> platforms) {
+    public Game(
+        String title, 
+        String developer, 
+        Integer releaseYear, 
+        String description, 
+        Float price, 
+        Genre genre, 
+        Set<Platform> platforms
+        )
+    {
         this();
         this.title = title;
         this.developer = developer;
@@ -63,13 +73,25 @@ public class Game {
         this.platforms = platforms;
     }
 
-    public Game(String title, String developer, Integer releaseYear, String description, Float price, String bannerImageUrl, Genre genre, Platform platform) {
+    public Game(
+        String title, 
+        String developer, 
+        Integer releaseYear, 
+        String description, 
+        Float price, 
+        String bannerImageUrl,
+        String backgroundImageUrl, 
+        Genre genre, 
+        Platform platform
+        ) 
+    {
         this.title = title;
         this.developer = developer;
         this.releaseYear = releaseYear;
         this.description = description;
         this.price = price;
         this.bannerImageUrl = bannerImageUrl;
+        this.backgroundImageUrl = backgroundImageUrl;
         this.genre = genre;
         this.platforms.add(platform);
     }
@@ -130,6 +152,14 @@ public class Game {
         this.bannerImageUrl = bannerImageUrl;
     }
 
+    public String getBackgroundImageUrl() {
+        return backgroundImageUrl;
+    }
+
+    public void setBackgroundImageUrl(String backgroundImageUrl) {
+        this.backgroundImageUrl = backgroundImageUrl;
+    }
+
     public Genre getGenre() {
         return genre;
     }
@@ -157,14 +187,16 @@ public class Game {
     @Override
     public String toString() {
         return "Game{" +
-        "id=" + id +
+        "id=" + id + '\'' +
         ", title='" + title + '\'' +
         ", developer='" + developer + '\'' +
         ", releaseYear=" + releaseYear +
         ", description='" + description + '\'' +
-        ", price=" + price +
-        ", genre=" + genre +
-        ", platforms=" + platforms +
+        ", price=" + price + '\'' +
+        ", bannerImageUrl=" + bannerImageUrl + '\'' +
+        ", backgroundImageUrl=" + backgroundImageUrl + '\'' +
+        ", genre=" + genre + '\'' +
+        ", platforms=" + platforms + 
         '}';
     }
 }

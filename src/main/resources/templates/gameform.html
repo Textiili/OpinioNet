@@ -17,6 +17,7 @@
         <input type="text" th:field="*{description}" placeholder="Description" required>
         <input type="number" th:field="*{price}" step="0.01" placeholder="Price" required>
         <input type="text" th:field="*{bannerImageUrl}" placeholder="bannerImageUrl">
+        <input type="text" th:field="*{backgroundImageUrl}" placeholder="backgroundImageUrl">
         
         <select multiple="multiple" name="platformIds" class="form-control">
             <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>

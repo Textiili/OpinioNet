@@ -56,12 +56,12 @@ public class OpinionetServiceApplication {
             platforms.forEach(platformRepository::save);
 
             List<Game> games = Arrays.asList(
-                new Game("Void Stranger", "System Erasure", 2023, "description", 11.79f,"/images/voidStrangerBanner.jpg", genres.get(0), platforms.get(0)),
-                new Game("Inscryption", "Daniel Mullins Games", 2021, "description", 19.99f,"/images/inscryptionBanner.jpg", genres.get(1), platforms.get(0)),
-                new Game("Cuphead", "Studio MDHR Entertainment Inc.", 2001, "description", 19.99f,"/images/cupheadBanner.jpg", genres.get(2), platforms.get(2)),
-                new Game("Hollow Knight", "Team Cherry", 2017, "description", 14.79f,"/images/hollowKnightBanner.jpg", genres.get(3), platforms.get(0)),
-                new Game("Undertale", "tobyfox", 2007, "description", 9.99f,"/images/undertaleBanner.jpg", genres.get(4), platforms.get(0)),
-                new Game("Going Under", "Aggro Crab", 2020, "description", 19.99f,"/images/goingUnderBanner.jpg", genres.get(5), platforms.get(1))
+                new Game("Void Stranger", "System Erasure", 2023, "description", 11.79f,"/images/voidStrangerBanner.jpg","/images/voidStrangerBackground.jpg", genres.get(0),platforms.get(0)),
+                new Game("Inscryption", "Daniel Mullins Games", 2021, "description", 19.99f,"/images/inscryptionBanner.jpg","/images/inscryptionBackground.jpg",genres.get(1),platforms.get(0)),
+                new Game("Cuphead", "Studio MDHR Entertainment Inc.", 2001, "description", 19.99f,"/images/cupheadBanner.jpg","/images/cupheadBackground.jpg",genres.get(2),platforms.get(2)),
+                new Game("Hollow Knight", "Team Cherry", 2017, "description", 14.79f,"/images/hollowKnightBanner.jpg","/images/hollowKnightBackground.jpg",genres.get(3),platforms.get(0)),
+                new Game("Undertale", "tobyfox", 2007, "description", 9.99f,"/images/undertaleBanner.jpg","/images/undertaleBackground.jpg",genres.get(4), platforms.get(0)),
+                new Game("Going Under", "Aggro Crab", 2020, "description", 19.99f,"/images/goingUnderBanner.jpg","/images/goingUnderBackground.jpg",genres.get(5), platforms.get(1))
             );
             games.forEach(gameRepository::save);
 
