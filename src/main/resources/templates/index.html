@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en">
@@ -9,7 +10,7 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="/images/OpinioNet.png" alt="OpinioNet Logo">
+            <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
         </div>
         <div class="nav-buttons">
             <a th:href="@{/addgame}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Add Game</a>
