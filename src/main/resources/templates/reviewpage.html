@@ -50,17 +50,14 @@
                     <td th:text="${review.rating}"></td>
                     <td th:text="${review.reviewText}"></td>
                 </tr>
-                <tr>
-                    <td>
-                        <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
-                        Review <span th:text="${game.title}"></span>
-                        </a>
-                        <a th:href="@{/}">Back to index</a>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
+    
+    <!-- Oltava ulkona divistä! -->
+    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
+        Review <span th:text="${game.title}"></span>
+        </a>
 </body>
 </html>
                 

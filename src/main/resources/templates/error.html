@@ -6,10 +6,22 @@
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en">
+    <style> 
+    /* Unique style for error page */
+        body {
+            background-color: black;
+            color: white;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h3>GAME OVER</h3>
+    <h3>GAME OVER!</h3>
+
     <p th:text="${errorMessage}"></p>
-    <a th:href="@{/}">Try again?</a>
+
+    <form th:action="@{/}" method="get">
+        <button type="submit" class="btn btn-sm btn-primary">Try again?</button>
+    </form>
 </body>
 </html>
