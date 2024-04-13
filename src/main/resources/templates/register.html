@@ -12,15 +12,15 @@
     <form th:action="@{/register}" method="post" th:object="${user}">
         <table>
             <tr>
-                <td>Username:</td>
-                <td><input type="text" th:field="*{username}" required/></td>
+                <td>Username: <input type="text" th:field="*{username}" required/></td>
+                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</td>
             </tr>
             <tr>
-                <td>Password:</td>
-                <td><input type="text" th:field="*{passwordHash}" required/></td>
+                <td>Password: <input type="text" th:field="*{passwordHash}" required/></td>
+                <td th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}">Error</td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="Register" /></td>
+                <td><input type="submit" value="Register" /></td>
             </tr>
         </table>
     </form>

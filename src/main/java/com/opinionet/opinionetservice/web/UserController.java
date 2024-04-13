@@ -48,18 +48,18 @@ public class UserController {
     @PostMapping("/register")
     public String registerSubmit(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "redirect:/register";
+            return "register";
         } else {
             if (userRepository.findByUsername(user.getUsername()) != null) {
                 bindingResult.rejectValue("username", "error.user", "Username already exists");
-                return "redirect:/register";
+                return "register";
             }
 
             String encodedPassword = passwordEncoder.encode(user.getPasswordHash());
             user.setPasswordHash(encodedPassword);
             user.setRole("USER");
             userRepository.save(user);
-            return "redirect:/login"; 
+            return "login"; 
         }
     }
 
