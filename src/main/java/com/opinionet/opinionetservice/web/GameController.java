@@ -32,7 +32,8 @@ public class GameController {
     @Autowired
     private GenreRepository genreRepository; 
 
-    @Autowired PlatformRepository platformRepository;
+    @Autowired
+    private PlatformRepository platformRepository;
 
     @GetMapping("")
     public String gameList(Model model) {
@@ -65,7 +66,7 @@ public class GameController {
         @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional,
         BindingResult bindingResult
         ) 
-    {   //Jos validointi menee läpi siirrytään eteenpäin
+    {   
         if (bindingResult.hasErrors()) {
             return "gameform";
         } else {
@@ -97,6 +98,5 @@ public class GameController {
         gameRepository.deleteById(gameId);
         return "redirect:/";
     }
-    //TODO: Validation
 }
 

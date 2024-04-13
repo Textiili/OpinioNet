@@ -3,6 +3,7 @@ package com.opinionet.opinionetservice.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
@@ -23,12 +24,14 @@ public class Game {
     @Size(max=40, message = "Max 40 characters!")
     private String developer;
 
-    @Positive(message = "Year cannot be negative number!")
+    @Positive(message = "Year cannot be negative or zero!")
     private Integer releaseYear;
 
     @Lob
+    @Size(max=100000, message = "Max 10000 characters!")
     private String description;
 
+    @PositiveOrZero(message = "Price must be positive or zero!")
     private Float price;
 
     private String bannerImageUrl;

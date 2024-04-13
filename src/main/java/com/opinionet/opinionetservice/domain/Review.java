@@ -1,12 +1,15 @@
 package com.opinionet.opinionetservice.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.DecimalMax;
+
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//TODO: Validation!
 @Entity
 public class Review {
     @Id
@@ -15,8 +18,11 @@ public class Review {
     private Long id;
 
     @Lob
+    @Size(max=10000, message = "Max 10000 characters")
     private String reviewText;
     
+    @DecimalMin(value = "0", message = "Value must be greater than or equal to 0")
+    @DecimalMax(value = "10", message = "Value must be less than or equal to 10")
     private Float rating;
 
     @Temporal(TemporalType.TIMESTAMP)
