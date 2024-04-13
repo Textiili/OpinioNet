@@ -64,14 +64,19 @@ public class GameController {
     public String saveGame(
         @Valid @ModelAttribute() Game game, 
         @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional,
-        BindingResult bindingResult
+        BindingResult bindingResult,
+        Model model
         ) 
     {   
         if (bindingResult.hasErrors()) {
-            return "gameform";
-        } else {
+            model.addAttribute("game", game); //TODO: This mess
+            model.addAttribute("platforms", platformRepository.findAll()); 
+            model.addAttribute("genres", genreRepository.findAll());
+            return "gameform"; } 
+        else {
             Set<Platform> platforms = new HashSet<>();
-        if (platformIdsOptional.isPresent()) {
+            
+            if (platformIdsOptional.isPresent()) {
             List<Long> platformIds = platformIdsOptional.get();
             for (Long platformId : platformIds) {
                 platforms.add(platformRepository.findById(platformId)
@@ -79,16 +84,17 @@ public class GameController {
             }
             game.setPlatforms(platforms);
             gameRepository.save(game);
-        } else {
-            if (platformRepository.findByName("undefined") == null) {
-                platformRepository.save(new Platform("undefined"));
+            return "redirect:/";} 
+            else {
+                if (platformRepository.findByName("undefined") == null) {
+                    platformRepository.save(new Platform("undefined"));
+                }
+                Platform platform = platformRepository.findByName("undefined");
+                platforms.add(platform);
+                game.setPlatforms(platforms);
+                gameRepository.save(game);
+                return "redirect:/";
             }
-            Platform platform = platformRepository.findByName("undefined");
-            platforms.add(platform);
-            game.setPlatforms(platforms);
-            gameRepository.save(game);
-        }
-        return "redirect:/";
         }
     }
 
