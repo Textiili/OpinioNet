@@ -61,11 +61,18 @@ public class GameController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/savegame")
-    public String saveGame(//TODO: Validation!
-        @ModelAttribute() Game game,
-        @RequestParam("platformIds") Optional<List<Long>> platformIdsOptional
+    public String saveGame(
+        @Valid @ModelAttribute() Game game,
+        BindingResult bindingResult,
+        Model model,
+        @RequestParam("platforms") Optional<List<Long>> platformIdsOptional
         ) 
     {   
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("platforms", platformRepository.findAll());
+            model.addAttribute("genres", genreRepository.findAll());
+            return "gameform";
+        }
         Set<Platform> platforms = new HashSet<>();
             
         if (platformIdsOptional.isPresent()) {
@@ -96,14 +103,3 @@ public class GameController {
         return "redirect:/";
     }
 }
-//TODO: Toimivat errorit
-// @PreAuthorize("hasAuthority('ADMIN')")
-    // @PostMapping("/savegame")
-    // public String saveGame(@Valid @ModelAttribute() Game game, BindingResult bindingResult, Model model) {   
-    //     if (bindingResult.hasErrors()) {
-    //         model.addAttribute("platforms", platformRepository.findAll());
-    //         model.addAttribute("genres", genreRepository.findAll());
-    //         return "gameform";
-    //     }
-    //     return "redirect:/";
-    // }

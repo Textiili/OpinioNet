@@ -65,21 +65,18 @@
             </tr>
             <tr>
                 <td>
-                    <!-- <option th:each="platform : ${platforms}">
-                        <td th:text="${platform.name}"></td>
-                        <td>
-                            <input class="form-check-input" th:value="${platform.id}" type="checkbox"/>
-                        </td>
-                    </option> -->
-                    <select multiple="multiple" name="platformIds" class="form-control">
-                        <option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
-                    </select>
+                    <div th:each="platform : ${platforms}">
+                        <label>
+                            <input type="checkbox" th:field="*{platforms}" th:value="${platform.id}" class="form-check-input">
+                            <span th:text="${platform.name}"></span>
+                        </label>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <select th:field="*{genre}" class="form-control" required> 
-                        <option value="" disabled selected hidden>Select Genre</option>
+                        <option value="">undefined</option>
                         <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
                     </select>
                 </td>
