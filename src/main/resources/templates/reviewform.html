@@ -36,22 +36,31 @@
         <input type="hidden" th:field="*{id}" />
         <table>
             <tr>
-                <td><textarea id="reviewText" th:field="*{reviewText}" rows="4" cols="50" maxlength="10000" required placeholder="Review test"></textarea></td>
+                <td><textarea id="reviewText" th:field="*{reviewText}" rows="4" cols="50" maxlength="10000" required placeholder="Review text"></textarea></td>
             </tr>
             <tr>
                 <td><input type="number" id="rating" th:field="*{rating}" step="0.1" min="0" max="10" required placeholder="Rating"/></td>
             </tr>
             <tr>
-                <td><input type="reset" value="Reset" class="btn btn-sm btn-primary"> <button type="submit" class="btn btn-sm btn-primary">Submit</button></td>
+                <td>
+                    <button type="reset" class="btn btn-sm btn-primary">Reset</button> 
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                    <button type="button" class="btn btn-sm btn-primary" th:if="${review.id != null}" th:attr="onclick=|deleteReview(${review.id})|">
+                        Delete review for<span th:text="${game.title}"></span>
+                    </button>
+                </td>
             </tr>
         </table>
     </form>
     <br>
-    <a th:if="${review.id != null}" th:href="@{/deletereview/{reviewId}(reviewId=${review.id})}" sec:authorize="hasAuthority('USER')">
-        Delete review for <span th:text="${game.title}"></span>
-    </a>
 
     <script>
+        function deleteReview(reviewId) {
+        if (confirm('Are you sure you want to delete this review?')) {
+            window.location.href = '/deletereview/' + reviewId;
+        }
+    }
+
         document.addEventListener('DOMContentLoaded', function () {
             var currentUrl = window.location.href;
             if (currentUrl.includes('/editreview')) 
