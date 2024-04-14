@@ -41,7 +41,10 @@
                 <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
                 <p><strong>Release Year:</strong> <span th:text="${game.releaseYear}"></span></p>
                 <p><strong>Price:</strong> <span th:text="${game.price} + ' €'"></span></p>
-                <p><strong>Genre:</strong> <span th:text="${game.genre.name}"></span></p>
+                <p><strong>Genres:</strong></p>
+                <ul>
+                    <li th:each="genre : ${game.genres}" th:text="${genre.name}"></li> 
+                </ul>
                 <p><strong>Platforms:</strong></p>
                 <ul>
                     <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 

@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 
 import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.GameRepository;
+import com.opinionet.opinionetservice.domain.Genre;
 import com.opinionet.opinionetservice.domain.GenreRepository;
 import com.opinionet.opinionetservice.domain.Platform;
 import com.opinionet.opinionetservice.domain.PlatformRepository; 
@@ -65,7 +66,8 @@ public class GameController {
         @Valid @ModelAttribute() Game game,
         BindingResult bindingResult,
         Model model,
-        @RequestParam("platforms") Optional<List<Long>> platformIdsOptional
+        @RequestParam("platforms") Optional<List<Long>> platformIdsOptional,
+        @RequestParam("genres") Optional<List<Long>> genreIdsOptional
         ) 
     {   
         if (bindingResult.hasErrors()) {
@@ -74,6 +76,7 @@ public class GameController {
             return "gameform";
         }
         Set<Platform> platforms = new HashSet<>();
+        Set<Genre> genres = new HashSet<>();
             
         if (platformIdsOptional.isPresent()) {
         List<Long> platformIds = platformIdsOptional.get();
@@ -92,9 +95,26 @@ public class GameController {
             game.setPlatforms(platforms);
             gameRepository.save(game);
         }
+
+        if (genreIdsOptional.isPresent()) {
+            List<Long> genreIds = genreIdsOptional.get();
+            for (Long genreId : genreIds) {
+                genres.add(genreRepository.findById(genreId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid genre ID: " + genreId)));
+            }
+            game.setGenres(genres);
+            gameRepository.save(game); }
+            else {
+                if (genreRepository.findByName("undefined") == null) {
+                    genreRepository.save(new Genre("undefined"));
+                }
+                Genre genre = genreRepository.findByName("undefined");
+                genres.add(genre);
+                game.setGenres(genres);
+                gameRepository.save(game);
+        }
         return "redirect:/";
     }
-    
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deletegame/{id}")

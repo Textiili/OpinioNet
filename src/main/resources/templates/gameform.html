@@ -75,10 +75,12 @@
             </tr>
             <tr>
                 <td>
-                    <select th:field="*{genre}" class="form-control" required> 
-                        <option value="">undefined</option>
-                        <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
-                    </select>
+                    <div th:each="genre : ${genres}">
+                        <label>
+                            <input type="checkbox" th:field="*{genres}" th:value="${genre.id}" class="form-check-input">
+                            <span th:text="${genre.name}"></span>
+                        </label>
+                    </div>
                 </td>
             </tr>
             <tr>
