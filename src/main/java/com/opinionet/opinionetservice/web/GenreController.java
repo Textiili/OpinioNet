@@ -11,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 
+import com.opinionet.opinionetservice.domain.GameRepository;
+import com.opinionet.opinionetservice.domain.Game;
 import com.opinionet.opinionetservice.domain.Genre;
 import com.opinionet.opinionetservice.domain.GenreRepository;
 
@@ -20,6 +22,9 @@ public class GenreController {
 
     @Autowired
     private GenreRepository genreRepository;
+
+    @Autowired
+    private GameRepository gameRepository;
 
     @GetMapping("/genrelist")
     public String genreList(Model model) {
@@ -51,7 +56,16 @@ public class GenreController {
 
     @GetMapping("/deletegenre/{id}")
     public String deleteGenre(@PathVariable("id") Long genreId) {
-        genreRepository.deleteById(genreId);
+        Genre genre = genreRepository.findById(genreId).orElse(null);
+        if (genre != null) {
+
+            for (Game game : genre.getGames()) {
+                game.getGenres().remove(genre);
+                gameRepository.save(game);
+            }
+            
+            genreRepository.deleteById(genreId);
+        }
         return "redirect:/genrelist";
     }
 }
