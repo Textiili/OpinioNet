@@ -47,7 +47,7 @@
                 <td th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Error</td>
             </tr>
             <tr>
-                <td><textarea th:field="*{description}" rows="4" cols="50" maxlength="2220"></textarea></td> 
+                <td><textarea th:field="*{description}" rows="4" cols="50" maxlength="2220" placeholder="Description"></textarea></td> 
                 <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
             </tr>
             <tr>
@@ -64,7 +64,7 @@
                 <td><input type="text" th:field="*{backgroundImageUrl}" placeholder="backgroundImageUrl"></td>
             </tr>
             <tr>
-                <td>
+                <td><strong>Platform(s):</strong>
                     <div th:each="platform : ${platforms}">
                         <label>
                             <input type="checkbox" th:field="*{platforms}" th:value="${platform.id}" class="form-check-input">
@@ -74,7 +74,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td><strong>Genre(s):</strong>
                     <div th:each="genre : ${genres}">
                         <label>
                             <input type="checkbox" th:field="*{genres}" th:value="${genre.id}" class="form-check-input">
