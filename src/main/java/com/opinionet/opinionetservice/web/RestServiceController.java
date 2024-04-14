@@ -44,12 +44,7 @@ public class RestServiceController {
 
 	@PostMapping("/api/games")
 	Game newGame(@RequestBody Game newGame) {
-        // if (newGame.getGenre() == null) {
-        //     if (genreRepository.findByName("undefined") == null) {
-        //         genreRepository.save(new Genre("undefined")); 
-        //     }
-        //     newGame.setGenre(genreRepository.findByName("undefined"));
-        // }
+        
         if (newGame.getGenres().isEmpty()) {
             Set<Genre> genres = new HashSet<>();
             if (genreRepository.findByName("undefined") == null) {
