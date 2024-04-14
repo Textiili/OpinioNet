@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -39,6 +39,7 @@
             <thead>
                 <tr>
                     <th>User</th>
+                    <th>Created at</th>
                     <th>Rating</th>
                     <th>Review Text</th>
                 </tr>
@@ -47,6 +48,7 @@
                 <tr th:each="review : ${reviews}">
                     <td th:if="${review.user != null}" th:text="${review.user.username}"></td>
                     <td th:if="${review.user == null}">Anonymous??</td> 
+                    <td th:text="${#dates.format(review.createdAt, 'dd/MM/yyyy')}"></td>
                     <td th:text="${review.rating}"></td>
                     <td th:text="${review.reviewText}"></td>
                 </tr>
@@ -58,6 +60,13 @@
     <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
         Review <span th:text="${game.title}"></span>
     </a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>OpinioNet - Created by Erkki Tiili</p>
+            <p><a href="https://github.com/Textiili/OpinioNet">GitHub</a> of this site and my <a href="https://fi.linkedin.com/in/erkki-tiili-73a07629a">LinkedIn</a> profile!</p>
+        </div>
+    </footer>
 </body>
 </html>
                 

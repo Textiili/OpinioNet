@@ -13,6 +13,8 @@ import com.opinionet.opinionetservice.domain.Review;
 import com.opinionet.opinionetservice.domain.ReviewRepository;
 import com.opinionet.opinionetservice.domain.User;
 import com.opinionet.opinionetservice.domain.UserRepository;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,8 @@ public class ReviewController {
 
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("/reviews/{gameId}")
-    public String saveReview(@PathVariable Long gameId, @ModelAttribute Review review) {
+    public String saveReview(@ModelAttribute Review review, @PathVariable Long gameId) {
+        
         Optional<Game> optionalGame = gameRepository.findById(gameId);
         if (optionalGame.isPresent()) {
             Game game = optionalGame.get();

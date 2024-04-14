@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/indexstyle.css" th:href="@{/css/indexstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -47,7 +47,7 @@
                 <td th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Error</td>
             </tr>
             <tr>
-                <td><textarea th:field="*{description}" rows="4" cols="50"></textarea></td> 
+                <td><textarea th:field="*{description}" rows="4" cols="50" maxlength="10000"></textarea></td> 
                 <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
             </tr>
             <tr>
@@ -97,5 +97,12 @@
             header.innerText = 'Edit Game';
         });
     </script>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>OpinioNet - Created by Erkki Tiili</p>
+            <p><a href="https://github.com/Textiili/OpinioNet">GitHub</a> of this site and my <a href="https://fi.linkedin.com/in/erkki-tiili-73a07629a">LinkedIn</a> profile!</p>
+        </div>
+    </footer>
 </body>
 </html>

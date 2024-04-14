@@ -2,6 +2,10 @@
 
 body {
     font-family: 'Minecraft', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .game-container {
@@ -116,6 +120,27 @@ body {
 .btn-primary:hover,
 .btn-success:hover {
     opacity: 0.8;
+}
+
+.footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-content a {
+    color: #fff;
 }
 
                                                 
