@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/formstyle.css" th:href="@{/css/formstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/signstyle.css" th:href="@{/css/signstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -9,24 +9,29 @@
 </head>
 <body>
     <h1>Login</h1>
-    <span th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}" 
-        th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}"></span>
+    
     <form th:action="@{/login}" method="post">
         <table>
             <tr>
-                <td>Username: <input type="text" name="username" value="" required placeholder="Enter your username"></td>
+                <!-- TODO: Tää on huono tapa näyttää error message, keksi joku toinen -->
+                <span th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null and session[SPRING_SECURITY_LAST_EXCEPTION].message != null}" 
+                    th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">
+                </span>
             </tr>
             <tr>
-                <td>Password: <input type="password" name="password" required placeholder="Enter your password"></td>
+                <td>Username: <input type="text" name="username" value="" required></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Submit"></td>
+                <td>Password: <input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                    <input type="button" value="Register" onclick="window.location.href='/register'" class="btn btn-sm btn-success">
+                    <input type="button" value="Back to index" onclick="window.location.href='/'" class="btn btn-sm btn-success">
+                </td>
             </tr>
         </table>
     </form>
-    <br>
-    <a th:href="@{/register}">Register</a> 
-    <br>
-    <a th:href="@{/}">Back to index</a>
 </body>
 </html>

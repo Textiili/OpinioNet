@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/formstyle.css" th:href="@{/css/formstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/signstyle.css" th:href="@{/css/signstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -12,19 +12,22 @@
     <form th:action="@{/register}" method="post" th:object="${user}">
         <table>
             <tr>
-                <td>Username: <input type="text" th:field="*{username}" required/></td>
-                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</td>
+                <td>Username: <input type="text" th:field="*{username}" required/>
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</span>
+                </td>
             </tr>
             <tr>
-                <td>Password: <input type="text" th:field="*{passwordHash}" required/></td>
-                <td th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}">Error</td>
+                <td>Password: <input type="text" th:field="*{passwordHash}" required/>
+                    <span th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}">Error</span>
+                </td>
             </tr>
             <tr>
-                <td><input type="submit" value="Register" class="btn btn-sm btn-primary"/></td>
+                <td>
+                    <input type="submit" value="Register" class="btn btn-sm btn-primary"/>
+                    <input type="button" value="Back to index" onclick="window.location.href='/'" class="btn btn-sm btn-success">
+                </td>
             </tr>
         </table>
     </form>
-    <br>
-    <td><a th:href="@{/}">Back to index</a></td>
 </body>
 </html>
