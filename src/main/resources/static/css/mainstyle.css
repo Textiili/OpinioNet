@@ -6,6 +6,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    text-align: center;
 }
 
 .game-container {
@@ -167,10 +168,12 @@ body {
 }
 
 .background-container {
-    width: 50%;
+    width: 60%;
     height: auto;
     flex-shrink: 0;
     z-index: -1;
+    align-self: center;
+    margin-top: 10px;
 }
 
 .background-container img {

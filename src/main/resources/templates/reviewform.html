@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/formstyle.css" th:href="@{/css/formstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -32,7 +32,7 @@
 
     <h3>Your review for <span th:text="${game.title}"></span></h3>
 
-    <form th:action="@{/reviews/{gameId}(gameId=${game.id})}" th:object="${review}" method="post">
+    <form th:action="@{/reviews/{gameId}(gameId=${game.id})}" th:object="${review}" method="post" class="form-class">
         <input type="hidden" th:field="*{id}" />
         <table>
             <tr>
@@ -42,17 +42,14 @@
                 <td><input type="number" id="rating" th:field="*{rating}" step="0.1" min="0" max="10" required/></td>
             </tr>
             <tr>
-                <td><input type="reset" value="Reset"><button type="submit">Submit Review</button></td>
-            </tr>
-            <tr th:if="${review.id != null}">
-                <td>
-                    <a th:href="@{/deletereview/{reviewId}(reviewId=${review.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
-                        Delete review for <span th:text="${game.title}"></span>
-                    </a>
-                </td>
+                <td><input type="reset" value="Reset" class="btn btn-sm btn-primary"> <button type="submit" class="btn btn-sm btn-primary">Submit</button></td>
             </tr>
         </table>
     </form>
+    <br>
+    <a th:if="${review.id != null}" th:href="@{/deletereview/{reviewId}(reviewId=${review.id})}" sec:authorize="hasAuthority('USER')">
+        Delete review for <span th:text="${game.title}"></span>
+    </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

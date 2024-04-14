@@ -38,8 +38,8 @@
     <div th:if="${reviews.empty}">
         <p>No reviews yet.</p>
     </div>
-    <div th:if="${not reviews.empty}">
-        <table class="table">
+    <!-- <div th:if="${not reviews.empty}"> -->
+        <table class="table" th:if="${not reviews.empty}">
             <thead>
                 <tr>
                     <th>User</th>
@@ -58,12 +58,13 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
+    <!-- </div> -->
+    <br>
     <!-- Oltava ulkona divistä! -->
     <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
         Review <span th:text="${game.title}"></span>
     </a>
+    <br>
 
     <footer class="footer">
         <div class="footer-content">
