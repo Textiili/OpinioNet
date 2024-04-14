@@ -29,6 +29,10 @@
         </div>
     </nav>
 
+    <div class="background-container" >
+        <img th:src="${game.backgroundImageUrl}" alt="Couldn't load" />
+    </div>
+
     <h3>Reviews for <span th:text="${game.title}"></span></h3>
 
     <div th:if="${reviews.empty}">
@@ -39,7 +43,7 @@
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Created at</th>
+                    <th>Created</th>
                     <th>Rating</th>
                     <th>Review Text</th>
                 </tr>
@@ -57,7 +61,7 @@
     </div>
 
     <!-- Oltava ulkona divistä! -->
-    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="btn btn-primary">
+    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
         Review <span th:text="${game.title}"></span>
     </a>
 
