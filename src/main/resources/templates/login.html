@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/formstyle.css" th:href="@{/css/formstyle.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,16 +14,18 @@
     <form th:action="@{/login}" method="post">
         <table>
             <tr>
-                <td>Username: <input type="text" name="username" value="" required></td>
+                <td>Username: <input type="text" name="username" value="" required placeholder="Enter your username"></td>
             </tr>
             <tr>
-                <td>Password: <input type="password" name="password" required></td>
+                <td>Password: <input type="password" name="password" required placeholder="Enter your password"></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Submit"></td>
             </tr>
         </table>
     </form>
+    <br>
+    <a th:href="@{/register}">Register</a> 
     <br>
     <a th:href="@{/}">Back to index</a>
 </body>
