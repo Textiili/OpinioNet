@@ -28,7 +28,7 @@ public class Game {
     private Integer releaseYear;
 
     @Lob
-    @Size(max=100000, message = "Max 10000 characters!")
+    @Size(max=2220, message = "Max 2220 characters!")
     private String description;
 
     @PositiveOrZero(message = "Price must be positive or zero!")

@@ -49,8 +49,15 @@
                 <ul>
                     <li th:each="platform : ${game.platforms}" th:text="${platform.name}"></li> 
                 </ul>
-                <p><strong>Description:</strong></p>
-                <p th:text="${game.description}"></p>
+                <p>
+                    <a href="#" th:attr="onclick=|toggleDescription(event, 'description-box-' + ${game.id})|">Description</a>
+                </p>
+                <div th:id="'description-box-' + ${game.id}" class="description-box">
+                    <img src="/images/close.png" alt="Close" class="close-btn" th:attr="onclick=|toggleDescription(event, 'description-box-' + ${game.id})|">
+                    <h3 th:text="${game.title}"></h3>
+                    <p th:text="${game.description}"></p>
+                </div>
+
                 <div class="actions">
                     <a th:href="@{/editgame/{id}(id=${game.id})}" sec:authorize="hasAuthority('ADMIN')">
                         Edit</a>
@@ -68,5 +75,14 @@
             <p><a href="https://github.com/Textiili/OpinioNet">GitHub</a> of this site and my <a href="https://fi.linkedin.com/in/erkki-tiili-73a07629a">LinkedIn</a> profile!</p>
         </div>
     </footer>
+    
+    <script>
+        function toggleDescription(event, id) {
+            event.preventDefault(); 
+            var descriptionBox = document.getElementById(id);
+            // Toggle between block and none
+            descriptionBox.style.display = descriptionBox.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
 </body>
 </html>
