@@ -51,7 +51,7 @@
                 <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
             </tr>
             <tr>
-                <td><input type="number" th:field="*{price}" step="0.01" placeholder="Price" required></td>
+                <td><input type="number" th:field="*{price}" step="0.01" min="0" placeholder="Price" required></td>
                 <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</td>
             </tr>
             <tr>

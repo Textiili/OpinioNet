@@ -14,7 +14,7 @@ public class Platform {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Cannot be blank spaces!")
+    @NotBlank(message = "Cannot be only spaces!")
     @Size(max=20, message = "Max 20 charactes!")
     private String name;
 

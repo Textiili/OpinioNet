@@ -34,8 +34,10 @@
         <input type="hidden" th:field="*{id}" />
         <table>
             <tr>
-                <td><input type="text" th:field="*{name}" placeholder="Name" required></td>
-                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</td>
+                <td>
+                    <input type="text" th:field="*{name}" placeholder="Genre name" required maxlength="60">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span>
+                </td>
             </tr>
             <tr>
                 <td><input type="reset" value="Reset" class="btn btn-sm btn-primary"> <button type="submit" class="btn btn-sm btn-primary">Submit</button></td>

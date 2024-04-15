@@ -14,8 +14,8 @@ public class Genre {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "Cannot be blank spaces!")
-    @Size(max=40, message= "Max 40 characters!")
+    @NotBlank(message = "Cannot be only spaces!")
+    @Size(max=60, message= "Max 60 characters!")
     private String name;
 
     @ManyToMany(mappedBy = "genres", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
