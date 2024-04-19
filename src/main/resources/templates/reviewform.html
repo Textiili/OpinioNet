@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="Cancel" onclick="window.location.href='/'" class="btn btn-sm btn-danger"> 
+                    <input type="button" value="Cancel" th:attr="onclick=|window.location.href='@{/reviews/{gameId}(gameId=${game.id})}'|" class="btn btn-sm btn-danger"> 
                     <input type="reset" value="Reset" class="btn btn-sm btn-danger"> 
                     <input type="submit" value="Submit" class="btn btn-sm btn-primary">
                     <input type="button" value="Delete" th:if="${review.id != null}" th:attr="onclick=|deleteReview(${review.id})|" class="btn btn-sm btn-danger">
