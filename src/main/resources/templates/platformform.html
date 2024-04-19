@@ -13,10 +13,11 @@
             <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
         </div>
         <div class="nav-buttons">
-            <a th:href="@{/}" class="btn btn-sm btn-secondary">Game List</a>
-            <a th:href="@{/userlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">User List</a>
-            <a th:href="@{/platformlist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Platform List</a>
-            <a th:href="@{/genrelist}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">Genre List</a>
+            <input type="button" value="Game List" onclick="window.location.href='/'" class="btn btn-sm btn-secondary">
+            <input type="button" value="User List" onclick="window.location.href='/userlist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
+            <input type="button" value="Platform List" onclick="window.location.href='/platformlist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
+            <input type="button" value="Genre List" onclick="window.location.href='/genrelist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
+            
             <form th:action="@{/logout}" method="post" th:if="${#authorization.expression('isAuthenticated()')}">
                 <button type="submit" class="btn btn-sm btn-danger">Logout</button>
             </form>
