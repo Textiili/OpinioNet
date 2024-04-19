@@ -220,6 +220,20 @@ body {
     text-shadow: 1px 1px 2px white;
 }
 
+a {
+    color: hsl(0, 64%, 38%); 
+}
+
+a:visited {
+    color: hsl(0, 64%, 38%); 
+}
+
+a:hover {
+    color: #ff6b6b; 
+}
+
+
+
 
 
 
