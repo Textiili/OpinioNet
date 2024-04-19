@@ -1,5 +1,5 @@
 # OpinioNet
-Self-made Video Game review website
+Self-made Video Game review website 👾
 
 # Asset origins/Credits
 I am using images from https://www.steamgriddb.com/. I do not own rights to
