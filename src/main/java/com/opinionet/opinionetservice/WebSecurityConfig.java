@@ -41,7 +41,7 @@ public class WebSecurityConfig {
         .defaultSuccessUrl("/") //TODO: Tee käytettävyyden kannalta parempi logiikka
         .permitAll()
       )
-      //To enable h2-console
+      //TODO: Poista postgresql jälkeen? Mahdollistaa h2-consolen
       .csrf(csrf -> csrf.disable())
       .headers(headers -> headers.disable())
       .logout(logout -> logout
