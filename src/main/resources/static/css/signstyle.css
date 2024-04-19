@@ -4,6 +4,7 @@ body {
     background-color: #000;
     color: #fff;
     font-family: 'Minecraft', sans-serif;
+    font-size: large;
     margin: 0;
     padding: 0;
 }
@@ -14,7 +15,7 @@ h1 {
 
 form {
     margin: 0 auto;
-    width: 300px;
+    width: 400px;
     padding: 20px;
 }
 
@@ -43,6 +44,7 @@ input[type="password"] {
     width:auto;
     cursor: pointer;
     font-family: 'Minecraft', sans-serif;
+    font-size: large;
     text-decoration: none;
 }
 

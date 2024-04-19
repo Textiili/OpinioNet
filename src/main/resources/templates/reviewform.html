@@ -44,11 +44,10 @@
             </tr>
             <tr>
                 <td>
-                    <button type="reset" class="btn btn-sm btn-primary">Reset</button> 
-                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                    <button type="button" class="btn btn-sm btn-primary" th:if="${review.id != null}" th:attr="onclick=|deleteReview(${review.id})|">
-                        Delete review for<span th:text="${game.title}"></span>
-                    </button>
+                    <input type="button" value="Cancel" onclick="window.location.href='/'" class="btn btn-sm btn-danger"> 
+                    <input type="reset" value="Reset" class="btn btn-sm btn-danger"> 
+                    <input type="submit" value="Submit" class="btn btn-sm btn-primary">
+                    <input type="button" value="Delete" th:if="${review.id != null}" th:attr="onclick=|deleteReview(${review.id})|" class="btn btn-sm btn-danger">
                 </td>
             </tr>
         </table>
