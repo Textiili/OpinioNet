@@ -81,6 +81,7 @@ label {
     width:auto;
     cursor: pointer;
     font-family: 'Minecraft', sans-serif;
+    font-size: large;
     text-decoration: none;
 }
 
