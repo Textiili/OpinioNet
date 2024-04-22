@@ -26,6 +26,7 @@ public class OpinionetServiceApplication {
     private static final Logger log = LoggerFactory.getLogger(OpinionetServiceApplication.class);
 
     public static void main(String[] args) {
+
         SpringApplication.run(OpinionetServiceApplication.class, args);
     }
 

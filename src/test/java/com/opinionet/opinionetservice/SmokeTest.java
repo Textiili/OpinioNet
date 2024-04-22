@@ -86,4 +86,6 @@ public class SmokeTest {
     public void customErrorControllerNotNull() {
         assertThat(customErrorController).isNotNull();
     }
+
+    //TODO: More tests/flexible tests?
 }

@@ -9,9 +9,11 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
-            <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
-        </div>
+        <a href="/">
+            <div class="logo">
+                <img src="/images/OpinioNetLogo.png" alt="OpinioNet Logo">
+            </div>
+        </a>
         <div class="nav-buttons">
             <input type="button" value="Add Genre" onclick="window.location.href='/addgenre'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
             <input type="button" value="User List" onclick="window.location.href='/userlist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
