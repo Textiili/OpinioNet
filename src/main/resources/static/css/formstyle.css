@@ -132,8 +132,8 @@ a {
     color: hsl(0, 64%, 38%); 
 }
 
-a:visited {
-    color: hsl(0, 64%, 38%); 
+.white {
+    color: white;
 }
 
 a:hover {
