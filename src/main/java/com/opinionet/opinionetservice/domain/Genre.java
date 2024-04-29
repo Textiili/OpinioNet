@@ -8,10 +8,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@Entity
+@Entity(name = "genre")
 public class Genre {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Cannot be only spaces!")

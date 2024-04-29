@@ -117,4 +117,4 @@ public class RestServiceController {
 		return platformRepository.save(editedPlatform);
 	}
 }
-
+//TODO: Validointi ja undefined

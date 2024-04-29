@@ -10,10 +10,10 @@ import java.util.HashSet;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity(name = "game")
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Cannot be blank spaces!")
@@ -25,17 +25,21 @@ public class Game {
     private String developer;
 
     @Positive(message = "Year cannot be negative or zero!")
+    @Column(name = "release_year")
     private Integer releaseYear;
 
     @Lob
     @Size(max=2220, message = "Max 2220 characters!")
+    @Column(name = "game_description")
     private String description;
 
     @PositiveOrZero(message = "Price must be positive or zero!")
     private Float price;
 
+    @Column(name = "banner_image_url")
     private String bannerImageUrl;
 
+    @Column(name = "background_image_url")
     private String backgroundImageUrl;
 
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -75,27 +79,6 @@ public class Game {
         this.description = description;
         this.price = price;
     }
-
-    // public Game( //Tarpeellinen?
-    //     String title, 
-    //     String developer, 
-    //     Integer releaseYear, 
-    //     String description, 
-    //     Float price, 
-    //     String bannerImageUrl,
-    //     String backgroundImageUrl, 
-    //     Genre genre
-    //     ) 
-    // {
-    //     this.title = title;
-    //     this.developer = developer;
-    //     this.releaseYear = releaseYear;
-    //     this.description = description;
-    //     this.price = price;
-    //     this.bannerImageUrl = bannerImageUrl;
-    //     this.backgroundImageUrl = backgroundImageUrl;
-    //     this. = genre;
-    // }
 
     public Game(
         String title, 

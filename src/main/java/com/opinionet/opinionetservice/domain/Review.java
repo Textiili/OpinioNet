@@ -10,15 +10,16 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
+@Entity(name = "review")
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long id;
 
     @Lob
     @Size(max=10000, message = "Max 10000 characters")
+    @Column(name = "review_text")
     private String reviewText;
     
     @DecimalMin(value = "0", message = "Value must be greater than or equal to 0")
