@@ -84,6 +84,6 @@ INSERT INTO platform (name) VALUES
 -- Insert games
 INSERT INTO game (title, developer, release_year, game_description, price)
 VALUES
-('Void Stranger', 'System Erasure', 2023, 'ing very important to you.', 11.79),
+('Void Stranger', 'System Erasure', 2023, 'ing very important to you.', 11.79);
 
 
