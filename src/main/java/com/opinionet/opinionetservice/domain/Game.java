@@ -42,7 +42,7 @@ public class Game {
     @Column(name = "background_image_url")
     private String backgroundImageUrl;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JsonIgnoreProperties( {"games","id"})
     @JoinTable(
         name = "game_genre",
@@ -55,7 +55,8 @@ public class Game {
     @OneToMany(
         mappedBy = "game", 
         cascade = CascadeType.ALL, 
-        orphanRemoval = true
+        orphanRemoval = true,
+        fetch = FetchType.EAGER
     )
     private Set<Review> reviews = new HashSet<>();
 

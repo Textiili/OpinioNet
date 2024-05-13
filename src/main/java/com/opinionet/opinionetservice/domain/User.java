@@ -28,7 +28,12 @@ public class User {
     @JsonIgnore
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(
+        mappedBy = "user", 
+        cascade = CascadeType.ALL, 
+        orphanRemoval = true,
+        fetch = FetchType.EAGER
+    )
     private List<Review> reviews = new ArrayList<>();
 
     public User() {

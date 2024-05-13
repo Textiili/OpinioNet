@@ -18,7 +18,11 @@ public class Genre {
     @Size(max=60, message= "Max 60 characters!")
     private String name;
 
-    @ManyToMany(mappedBy = "genres", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(
+        mappedBy = "genres", 
+        cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
+        fetch = FetchType.EAGER
+    )
     @JsonIgnore
     private Set<Game> games = new HashSet<>();
 

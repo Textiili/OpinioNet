@@ -18,7 +18,11 @@ public class Platform {
     @Size(max=20, message = "Max 20 charactes!")
     private String name;
 
-    @ManyToMany(mappedBy = "platforms", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToMany(
+        mappedBy = "platforms", 
+        cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
+        fetch = FetchType.EAGER
+    )
     @JsonIgnore
     private Set<Game> games = new HashSet<>();
 
