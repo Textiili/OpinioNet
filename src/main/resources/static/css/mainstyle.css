@@ -177,12 +177,12 @@ body {
 }
 
 .background-container {
-    width: 60%;
+    width: 100%;
     height: auto;
     flex-shrink: 0;
     z-index: -1;
     align-self: center;
-    margin-top: 10px;
+    border-top: 1px solid rgb(40, 40, 40);
 }
 
 .background-container img {
@@ -233,11 +233,3 @@ a {
 a:hover {
     color: #ff6b6b; 
 }
-
-
-
-
-
-
-
-
