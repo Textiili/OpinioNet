@@ -28,7 +28,7 @@ public class Game {
     private Integer releaseYear;
 
     @Lob
-    @Size(max=2220, message = "Max 2220 characters!")
+    @Size(max=2000, message = "Max 2000 characters!")
     private String description;
 
     @PositiveOrZero(message = "Price must be positive or zero!")
@@ -75,27 +75,6 @@ public class Game {
         this.description = description;
         this.price = price;
     }
-
-    // public Game( //Tarpeellinen?
-    //     String title, 
-    //     String developer, 
-    //     Integer releaseYear, 
-    //     String description, 
-    //     Float price, 
-    //     String bannerImageUrl,
-    //     String backgroundImageUrl, 
-    //     Genre genre
-    //     ) 
-    // {
-    //     this.title = title;
-    //     this.developer = developer;
-    //     this.releaseYear = releaseYear;
-    //     this.description = description;
-    //     this.price = price;
-    //     this.bannerImageUrl = bannerImageUrl;
-    //     this.backgroundImageUrl = backgroundImageUrl;
-    //     this. = genre;
-    // }
 
     public Game(
         String title, 

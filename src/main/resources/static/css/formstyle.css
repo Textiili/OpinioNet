@@ -10,13 +10,16 @@ body {
     background-color: #d2d2d2;
 }
 
+/*========================================*/
+
 .actions {
     margin-top: 10px;
 }
-
 .actions a {
     margin-right: 10px;
 }
+
+/*========================================*/
 
 .navbar {
     display: flex;
@@ -25,19 +28,18 @@ body {
     padding: 10px;
     background-color: #000000; 
 }
-
 .logo img {
     width: 250px; 
 }
-
 .nav-buttons {
     display: flex;
     align-items: center;
 }
-
 .nav-buttons form {
     margin-right: 20px; 
 }
+
+/*========================================*/
 
 .form-class {
     width: 50%;
@@ -65,14 +67,16 @@ textarea {
 }
 
 textarea {
-    height: 100px; /* Adjust height as needed */
-    resize: vertical; /* Allow vertical resizing */
+    height: 100px; 
+    resize: vertical;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
 }
+
+/*========================================*/
 
 .btn {
     border: 1px outset rgb(255, 255, 255);
@@ -84,28 +88,26 @@ label {
     font-size: large;
     text-decoration: none;
 }
-
 .btn-primary {
     background-color: #6c757d; 
     color: #fff;
 }
-
 .btn-secondary {
     margin-right: 40px;
     border: transparent;
     background-color: transparent; 
     color: #fff;
 }
-
 .btn-secondary:hover {
     background-color: #fff; 
     color: #000; 
 }
-
 .btn-primary:hover,
 .btn-success:hover {
     opacity: 0.8;
 }
+
+/*========================================*/
 
 .footer {
     background-color: #000000;
@@ -114,19 +116,18 @@ label {
     text-align: center;
     margin-top: auto;
 }
-
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
 }
-
 .footer-content p {
     margin: 5px 0;
 }
-
 .footer-content a {
     color: #fff;
 }
+
+/*========================================*/
 
 a {
     color: hsl(0, 64%, 38%); 

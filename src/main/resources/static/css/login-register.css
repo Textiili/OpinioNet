@@ -37,6 +37,8 @@ input[type="password"] {
     margin-bottom: 10px;
 }
 
+/*========================================*/
+
 .btn {
     border: 1px outset rgb(255, 255, 255);
     background-color: #b3b6b9;
@@ -47,24 +49,20 @@ input[type="password"] {
     font-size: large;
     text-decoration: none;
 }
-
 .btn-primary {
     background-color: #6c757d; 
     color: #fff;
 }
-
 .btn-secondary {
     margin-right: 40px;
     border: transparent;
     background-color: transparent; 
     color: #fff;
 }
-
 .btn-secondary:hover {
     background-color: #fff; 
     color: #000; 
 }
-
 .btn-primary:hover,
 .btn-success:hover {
     opacity: 0.8;
