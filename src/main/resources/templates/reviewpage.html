@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link type="text/css" rel="stylesheet" href="/css/index.css" th:href="@{/css/index.css}" />
+    <link type="text/css" rel="stylesheet" href="/css/reviewpage.css" th:href="@{/css/reviewpage.css}" />
     <link rel="icon" href="/images/OpinioNetIcon.png">
     <title>OpinioNet</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -35,10 +35,10 @@
         <img th:src="${game.backgroundImageUrl}" alt="Couldn't load" />
     </div>
 
-    <h3 class="shadow">Reviews for <span th:text="${game.title}"></span></h3>
+    <h3>Reviews for <span th:text="${game.title}"></span></h3>
 
     <div th:if="${reviews.empty}">
-        <p class="shadow">No reviews yet.</p>
+        <p>No reviews yet.</p>
     </div>
     <table class="table" th:if="${not reviews.empty}">
         <thead>
@@ -63,7 +63,7 @@
     <!-- Oltava ulkona divistä! -->
 
     <!-- <input type="button" value="Review" th:attr="onclick=|window.location.href='@{/review/{id}(id=${game.id})}'|" sec:authorize="hasAuthority('USER')" class="btn btn-sm btn-primary"> -->
-    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')" class="shadow">
+    <a th:href="@{/review/{id}(id=${game.id})}" sec:authorize="hasAuthority('USER')">
         Review <span th:text="${game.title}"></span>
     </a>
     <br>
