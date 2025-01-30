@@ -50,7 +50,7 @@
                 <td th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Error</td>
             </tr>
             <tr>
-                <td><textarea th:field="*{description}" rows="4" cols="50" maxlength="2220" placeholder="Description"></textarea></td> 
+                <td><textarea th:field="*{description}" rows="4" cols="50" maxlength="1000" placeholder="Description"></textarea></td> 
                 <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error</td>
             </tr>
             <tr>
