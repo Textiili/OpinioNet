@@ -28,6 +28,14 @@ public class UserController {
         return "userlist";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')") //TODO!
+    @GetMapping("/edituser/{id}")
+    public String editUser(@PathVariable("id") Long userId, Model model) {
+        model.addAttribute("user", userRepository.findById(userId));
+        return "userform";
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/deleteuser/{id}")
     public String deleteUser(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
