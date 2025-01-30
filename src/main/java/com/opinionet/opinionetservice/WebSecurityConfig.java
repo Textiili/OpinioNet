@@ -33,7 +33,7 @@ public class WebSecurityConfig {
     .requestMatchers(antMatcher("/reviews/**")).permitAll() //Salli kaikille arvostelut
     .requestMatchers(antMatcher("/database/**")).permitAll() //salli h2-console
     .requestMatchers(antMatcher("/api/**")).permitAll() //Salli api
-    .requestMatchers(antMatcher("/error")).permitAll()
+    .requestMatchers(antMatcher("/error")).permitAll() //SALLI ERRORIT %-))
     .anyRequest().authenticated()
     )
       .formLogin(formlogin -> formlogin
@@ -64,9 +64,9 @@ public class WebSecurityConfig {
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/images/**")
         .allowedOrigins(
-                "https://cdn2.steamgriddb.com",
-                "https://cdn.cloudflare.steamstatic.com",
-                "https://web.postman.co"
+          "https://cdn2.steamgriddb.com",
+          "https://cdn.cloudflare.steamstatic.com",
+          "https://web.postman.co"
         )
         .allowedHeaders("Content-Type")
         .allowedMethods("GET", "POST", "PUT")
