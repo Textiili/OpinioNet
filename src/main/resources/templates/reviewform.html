@@ -15,7 +15,6 @@
             </div>
         </a>
         <div class="nav-buttons">
-            <input type="button" value="Back to reviews" th:attr="onclick=|window.location.href='@{/reviews/{gameId}(gameId=${game.id})}'|" class="btn btn-sm btn-secondary">
             <input type="button" value="Game List" onclick="window.location.href='/'" class="btn btn-sm btn-secondary">
             <input type="button" value="User List" onclick="window.location.href='/userlist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
             <input type="button" value="Platform List" onclick="window.location.href='/platformlist'" sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-secondary">
